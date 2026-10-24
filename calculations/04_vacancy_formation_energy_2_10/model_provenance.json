@@ -1,0 +1,11 @@
+{
+  "model_name": "MACE-MPA-0 medium",
+  "local_model_path": "../02_vacancy_relaxation/.models/mace-mpa-0-medium.model",
+  "copied_from": "/Users/user/Documents/jMLIP/mace/mace/calculators/foundations_models/mace-mpa-0-medium.model",
+  "official_release_url": "https://github.com/ACEsuit/mace-mp/releases/download/mace_mpa_0/mace-mpa-0-medium.model",
+  "sha256": "75428afe3a1d7d8062e19bcaabd5c433623cabf308242ec9fb493e38604fb638",
+  "bytes": 79462305,
+  "dispersion_correction": false,
+  "selection": "Same pinned checkpoint as calculation 02; reused from its local model directory.",
+  "other_locally_available_materials_model": "/Users/user/Documents/GSFE/MLIP/MACE/MACE-matpes-pbe-omat-ft.model"
+}

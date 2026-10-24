@@ -1,0 +1,27 @@
+{
+  "checks": [
+    {
+      "n": 4,
+      "fresh_fmax_eV_per_angstrom": 0.003586831394460326,
+      "energy_difference_from_saved_eV": -6.821210263296962e-12,
+      "max_force_difference_from_saved_eV_per_angstrom": 2.9551381543863834e-07,
+      "passed": true
+    },
+    {
+      "n": 5,
+      "fresh_fmax_eV_per_angstrom": 0.004394247376786921,
+      "energy_difference_from_saved_eV": 2.6943780540023e-11,
+      "max_force_difference_from_saved_eV_per_angstrom": 3.4300988731970233e-07,
+      "passed": true
+    }
+  ],
+  "other_checks": [
+    "surviving atom identities preserved",
+    "cell and periodicity unchanged",
+    "trajectory frame counts match optimiser steps",
+    "energy lowered from perturbed initial structure",
+    "CSV vectors recomputed from geometry",
+    "rigid translation removed",
+    "in-plane magnitude checked"
+  ]
+}

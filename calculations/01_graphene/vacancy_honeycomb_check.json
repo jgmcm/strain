@@ -1,0 +1,130 @@
+[
+  {
+    "n": 4,
+    "ase_version": "3.29.0",
+    "lattice_constant_angstrom": 2.46,
+    "vacancy_indices_zero_based": [
+      0,
+      19
+    ],
+    "vacancy_fractional_xy_in_full_supercell": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.6666666666666666,
+        0.3333333333333333
+      ]
+    ],
+    "vacancy_parent_sublattices": [
+      "A",
+      "B"
+    ],
+    "remaining_carbon_atoms": 30,
+    "neighbor_distances_angstrom": [
+      5.681126648825917,
+      5.681126648825917,
+      5.681126648825918
+    ],
+    "neighbor_vectors_xy_angstrom": [
+      [
+        4.92,
+        2.8405633244129587
+      ],
+      [
+        -4.92,
+        2.8405633244129587
+      ],
+      [
+        0.0,
+        -5.681126648825918
+      ]
+    ],
+    "neighbor_angles_degrees": [
+      120.00000000000001,
+      120.00000000000001,
+      120.00000000000001
+    ],
+    "neighbor_image_translations": [
+      [
+        0,
+        0
+      ],
+      [
+        -1,
+        0
+      ],
+      [
+        -1,
+        -1
+      ]
+    ],
+    "search": "All possible second vacancies, first vacancy fixed at ASE index 0; periodic images -2 to 2 in each in-plane direction.",
+    "scope": "Ideal unstrained geometry; no energy calculation or relaxation."
+  },
+  {
+    "n": 5,
+    "ase_version": "3.29.0",
+    "lattice_constant_angstrom": 2.46,
+    "vacancy_indices_zero_based": [
+      0,
+      17
+    ],
+    "vacancy_fractional_xy_in_full_supercell": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ]
+    ],
+    "vacancy_parent_sublattices": [
+      "A",
+      "B"
+    ],
+    "remaining_carbon_atoms": 48,
+    "neighbor_distances_angstrom": [
+      7.1014083110323964,
+      7.101408311032398,
+      7.101408311032398
+    ],
+    "neighbor_vectors_xy_angstrom": [
+      [
+        0.0,
+        7.1014083110323964
+      ],
+      [
+        -6.15,
+        -3.5507041555161996
+      ],
+      [
+        6.15,
+        -3.5507041555161996
+      ]
+    ],
+    "neighbor_angles_degrees": [
+      120.00000000000001,
+      120.00000000000001,
+      119.99999999999997
+    ],
+    "neighbor_image_translations": [
+      [
+        0,
+        0
+      ],
+      [
+        -1,
+        -1
+      ],
+      [
+        0,
+        -1
+      ]
+    ],
+    "search": "All possible second vacancies, first vacancy fixed at ASE index 0; periodic images -2 to 2 in each in-plane direction.",
+    "scope": "Ideal unstrained geometry; no energy calculation or relaxation."
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "n": 2,
+  "carbon_atoms": 6,
+  "vacancies": 2,
+  "vacancy_fraction": 0.25,
+  "parent_sublattices": "A/B",
+  "vacancy_spacing_angstrom": 2.8405633244129587,
+  "converged": true,
+  "bfgs_steps": 54,
+  "fmax_eV_per_angstrom": 0.004598230825556482,
+  "defect_energy_eV": -42.76507691424698,
+  "mu_C_eV_per_atom": -9.203812065050391,
+  "perfect_supercell_energy_eV": -73.63049652040311,
+  "perfect_extensivity_error_eV": 1.4210854715202004e-14,
+  "formation_energy_two_vacancies_eV": 12.45779547605536,
+  "formation_energy_per_vacancy_eV": 6.22889773802768,
+  "ideal_defect_formation_energy_eV": 12.701874985257817,
+  "relaxation_energy_eV": -0.24407950917220944
+}

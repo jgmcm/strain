@@ -1,0 +1,30 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - project.qmd
+    - calculations/calculations.qmd
+    - fig1_strain/notes.qmd
+website:
+  title: "Strain engineering"
+  navbar:
+    left:
+      - href: project.qmd
+        text: Project
+      - href: calculations/calculations.qmd
+        text: Calculations
+      - href: fig1_strain/notes.qmd
+        text: Figure 1
+  sidebar:
+    style: docked
+    contents:
+      - project.qmd
+      - calculations/calculations.qmd
+      - fig1_strain/notes.qmd
+format:
+  html:
+    theme: cosmo
+    toc: true
+    html-math-method: mathml
+execute:
+  enabled: false

@@ -1,0 +1,164 @@
+---
+title: "Calculations"
+---
+
+The graphene structure builder is in `01_graphene/`. The first local MACE
+relaxations of two-vacancy 4 × 4 and 5 × 5 cells are complete in
+`02_vacancy_relaxation/`. The larger 20 × 20 and 21 × 21 set is in
+`03_vacancy_relaxation_20_21/`. The two-vacancy formation-energy scan from
+2 × 2 through 10 × 10 is complete in `04_vacancy_formation_energy_2_10/`.
+
+## Local calculation 01: graphene
+
+[`make_graphene.py`](01_graphene/make_graphene.py) uses ASE to build an
+$n \times n$ graphene supercell containing $2n^2$ carbon atoms. It defaults to
+$a = 2.46$ Å and 15 Å vacuum on each side, with periodicity in-plane only.
+These are starting geometry settings, not converged calculation parameters.
+
+From the paper directory, using the existing local ASE environment:
+
+```sh
+../../AgI/agi-hexatic/.venv/bin/python calculations/01_graphene/make_graphene.py 4
+```
+
+The output is `calculations/01_graphene/graphene_4x4.extxyz`; a 32-carbon example
+has been generated locally. Structure checks for $n=1,3,4$ confirmed atom counts,
+cell geometry, vacuum, periodicity, three neighbours per carbon and bond lengths.
+Use `--a`, `--vacuum` and `--output` to change the settings or destination.
+See the [calculation README](01_graphene/README.md) for environment setup.
+
+## Local calculation 02: two-vacancy relaxation
+
+Both honeycomb vacancy patterns were relaxed with the locally available
+[MACE-MPA-0 medium foundation model](https://mace-docs.readthedocs.io/en/latest/guide/foundation_models.html),
+using `/opt/anaconda3/envs/mace/bin/python`, MACE 0.3.16, CPU and float64.
+The checkpoint checksum and package versions are recorded with the calculation.
+
+The periodic cells stay fixed at $a=2.46$ Å, with 15 Å vacuum on each side;
+all atomic coordinates relax in 3D. A small reproducible perturbation allows
+symmetry breaking. ASE BFGS stopped when the largest force was below 0.005 eV/Å.
+
+| Cell | Carbon atoms | Steps | Final max force (eV/Å) | Max $|\mathbf{u}_{\parallel}|$ (Å) |
+|---|---:|---:|---:|---:|
+| 4 × 4 | 30 | 22 | 0.003587 | 0.055897 |
+| 5 × 5 | 48 | 18 | 0.004394 | 0.082216 |
+
+Displacements are relative to the ideal surviving sites, with periodic wrapping
+and rigid translation removed. The primary quantity is
+$|\mathbf{u}_{\parallel}|=\sqrt{u_x^2+u_y^2}$; the strain tensor has not been computed.
+These are exploratory foundation-model results with fixed cells.
+
+See the [method and reproduction commands](02_vacancy_relaxation/README.md),
+[relaxation script](02_vacancy_relaxation/relax.py), and
+[Figure 1](../fig1_strain/notes.qmd) for plots. Atom-resolved data are in the
+[4 × 4 CSV](02_vacancy_relaxation/4x4/displacement.csv) and
+[5 × 5 CSV](02_vacancy_relaxation/5x5/displacement.csv).
+
+## Local calculation 03: 20 × 20 and 21 × 21
+
+The [larger-cell set](03_vacancy_relaxation_20_21/README.md) uses the same pinned
+MACE-MPA-0 medium model, fixed lattice constant, vacuum, 3D atomic relaxation,
+starting perturbation and force tolerance as calculation 02.
+
+| Cell | Carbon atoms | Original vacancy indices | Parent sublattices | Vacancy spacing (Å) |
+|---|---:|---|---|---:|
+| 20 × 20 | 798 | 0, 267 | A, B | 28.405633 |
+| 21 × 21 | 880 | 0, 322 | A, A | 29.825915 |
+
+Both use full-cell fractional vacancy positions $(0,0)$ and $(1/3,2/3)$.
+Explicit 7 × 7 repeats verified equal nearest distances and 120° angles at
+all 50 interior vacancy sites for each case. The exact 21 × 21 honeycomb pattern
+requires same-sublattice vacancies, so this comparison changes the parent
+sublattice arrangement as well as cell size.
+
+Both cells converged and passed fresh force evaluations of their saved structures.
+
+| Cell | BFGS steps | Final max force (eV/Å) | Max $|\mathbf{u}_{\parallel}|$ (Å) |
+|---|---:|---:|---:|
+| 20 × 20 | 89 | 0.004324 | 0.334622 |
+| 21 × 21 | 29 | 0.004811 | 0.106652 |
+
+The 20 × 20 result has a reconstructed neighbour pair of about 1.813 Å at each
+vacancy; the 21 × 21 result retains approximately threefold neighbour-pair
+distances of 2.28–2.30 Å at the selected force tolerance. These are different local
+vacancy geometries as well as different parent sublattice arrangements.
+
+See [Figure 1](../fig1_strain/notes.qmd) for the vector and Gouraud views. The
+atom-resolved data are in the
+[20 × 20 CSV](03_vacancy_relaxation_20_21/20x20/displacement.csv) and
+[21 × 21 CSV](03_vacancy_relaxation_20_21/21x21/displacement.csv).
+
+## Local calculation 04: formation energies, 2 × 2 through 10 × 10
+
+The [04 set](04_vacancy_formation_energy_2_10/README.md) uses the same model and
+fixed-cell relaxation protocol. Its carbon reference is the perfect two-atom
+graphene primitive cell at the matching lattice constant $a=2.46$ Å:
+
+$$
+\mu_\mathrm{C}=\frac{E_\mathrm{perfect\ unit}}{2}=-9.2038120651\;\mathrm{eV/C},
+\qquad
+E_\mathrm{form}=E_\mathrm{relaxed\ defect}-(2n^2-2)\mu_\mathrm{C}.
+$$
+
+$n$ denotes the supercell repeat size, while $N_\mathrm{C}=2n^2-2$ is the
+surviving atom count. The formation energy is for **two vacancies per cell**;
+the average per vacancy is half this value.
+
+| Cell | Carbon atoms | Parent sublattices | $E_\mathrm{form}$, two vacancies (eV) | Per vacancy (eV) |
+|---|---:|---|---:|---:|
+| 2 × 2 | 6 | A/B | 12.457795 | 6.228898 |
+| 3 × 3 | 16 | A/A | 14.034173 | 7.017087 |
+| 4 × 4 | 30 | A/B | 13.710196 | 6.855098 |
+| 5 × 5 | 48 | A/B | 13.913360 | 6.956680 |
+| 6 × 6 | 70 | A/A | 13.905304 | 6.952652 |
+| 7 × 7 | 96 | A/B | 13.830592 | 6.915296 |
+| 8 × 8 | 126 | A/B | 13.836803 | 6.918401 |
+| 9 × 9 | 160 | A/A | 13.820776 | 6.910388 |
+| 10 × 10 | 198 | A/B | 13.807627 | 6.903813 |
+
+![Formation energy of the two-vacancy honeycomb arrays.](04_vacancy_formation_energy_2_10/formation_energy.png)
+
+All nine relaxations reached maximum force below 0.005 eV/Å, and fresh MACE
+evaluations verified their saved energies and forces. Perfect supercells at
+every size agree with $2n^2\mu_\mathrm{C}$ to within $3\times10^{-12}$ eV.
+Explicit 7 × 7 repeats checked equal vacancy distances and 120° angles.
+
+The 7 × 7 through 10 × 10 energies span 13.8076–13.8368 eV for both vacancies.
+Sizes 3, 6 and 9 use A/A parent sublattices, and the other sizes use A/B.
+This scan varies vacancy concentration and parent-sublattice arrangement;
+the small spread at its larger sizes does not establish the global-minimum
+reconstruction or the dilute-vacancy limit.
+
+See the [combined CSV](04_vacancy_formation_energy_2_10/formation_energies.csv),
+[relaxation and extraction script](04_vacancy_formation_energy_2_10/relax.py), and
+[plotting script](04_vacancy_formation_energy_2_10/plot_formation_energy.py).
+The plotting script calls `plt.show()` by default.
+
+## Reference setup
+
+| Item | Decision |
+|---|---|
+| First local structure | Two-vacancy graphene monolayers, 4 × 4 and 5 × 5 |
+| First observable | In-plane atomic displacement magnitude |
+| Code, version and method | ASE 3.29.0; MACE 0.3.16; MACE-MPA-0 medium |
+| Initial relaxation criterion | Maximum force below 0.005 eV/Å |
+| Reference for displacement | Ideal surviving sites in the same fixed periodic cell |
+
+## Strain protocol
+
+Define the strain tensor, reference cell, directions and range. Record which cell
+components are constrained and whether internal coordinates or transverse cell
+components relax at each strain. Include the unstrained point as a baseline.
+
+## Calculation record
+
+For each run, record its identifier, structure source, strain, method/settings,
+input and output paths, convergence status and extracted property with units.
+The first relaxation records are in `02_vacancy_relaxation/4x4/metrics.json` and
+`02_vacancy_relaxation/5x5/metrics.json`, with inputs, logs and trajectories beside them.
+
+## Next step
+
+Decide how to estimate the strain tensor from the discrete displacement field.
+Before making quantitative physical claims, check the reference lattice constant,
+vacancy reconstruction and cell-size effects against a suitable reference method.

@@ -1,0 +1,254 @@
+[
+  {
+    "n": 4,
+    "ase_version": "3.29.0",
+    "original_vacancy_indices_zero_based": [
+      0,
+      19
+    ],
+    "repeat": [
+      7,
+      7,
+      1
+    ],
+    "explicit_vacancy_site_count": 98,
+    "interior_vacancy_sites_verified": 50,
+    "maximum_spread_of_three_distances_angstrom": 1.1546319456101628e-14,
+    "maximum_angle_error_degrees": 1.1368683772161603e-13,
+    "central_vacancy_checks": [
+      {
+        "center_cartesian_angstrom": [
+          14.76,
+          25.565069919716628,
+          15.0
+        ],
+        "neighbor_cartesian_angstrom": [
+          [
+            14.76,
+            19.88394327089071,
+            15.0
+          ],
+          [
+            9.84,
+            28.405633244129586,
+            15.0
+          ],
+          [
+            19.68,
+            28.405633244129586,
+            15.0
+          ]
+        ],
+        "neighbor_displacements_angstrom": [
+          [
+            0.0,
+            -5.6811266488259164,
+            0.0
+          ],
+          [
+            -4.92,
+            2.8405633244129582,
+            0.0
+          ],
+          [
+            4.92,
+            2.8405633244129582,
+            0.0
+          ]
+        ],
+        "neighbor_distances_angstrom": [
+          5.6811266488259164,
+          5.681126648825917,
+          5.681126648825917
+        ],
+        "pairwise_angles_degrees": [
+          119.99999999999999,
+          119.99999999999999,
+          120.00000000000001
+        ],
+        "fourth_neighbor_distance_angstrom": 9.84,
+        "original_atom_index": 0
+      },
+      {
+        "center_cartesian_angstrom": [
+          19.68,
+          28.405633244129586,
+          15.0
+        ],
+        "neighbor_cartesian_angstrom": [
+          [
+            14.76,
+            25.565069919716628,
+            15.0
+          ],
+          [
+            24.6,
+            25.565069919716628,
+            15.0
+          ],
+          [
+            19.68,
+            34.086759892955506,
+            15.0
+          ]
+        ],
+        "neighbor_displacements_angstrom": [
+          [
+            -4.92,
+            -2.8405633244129582,
+            0.0
+          ],
+          [
+            4.920000000000002,
+            -2.8405633244129582,
+            0.0
+          ],
+          [
+            0.0,
+            5.68112664882592,
+            0.0
+          ]
+        ],
+        "neighbor_distances_angstrom": [
+          5.681126648825917,
+          5.681126648825918,
+          5.68112664882592
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          119.99999999999999,
+          119.99999999999999
+        ],
+        "fourth_neighbor_distance_angstrom": 9.84,
+        "original_atom_index": 19
+      }
+    ],
+    "method": "Ordinary Cartesian distance to every vacancy in a finite 7x7 repetition; no minimum-image wrapping."
+  },
+  {
+    "n": 5,
+    "ase_version": "3.29.0",
+    "original_vacancy_indices_zero_based": [
+      0,
+      17
+    ],
+    "repeat": [
+      7,
+      7,
+      1
+    ],
+    "explicit_vacancy_site_count": 98,
+    "interior_vacancy_sites_verified": 50,
+    "maximum_spread_of_three_distances_angstrom": 1.509903313490213e-14,
+    "maximum_angle_error_degrees": 1.4210854715202004e-13,
+    "central_vacancy_checks": [
+      {
+        "center_cartesian_angstrom": [
+          18.450000000000003,
+          31.95633739964579,
+          15.0
+        ],
+        "neighbor_cartesian_angstrom": [
+          [
+            18.450000000000003,
+            39.057745710678184,
+            15.0
+          ],
+          [
+            24.600000000000005,
+            28.40563324412959,
+            15.0
+          ],
+          [
+            12.3,
+            28.40563324412959,
+            15.0
+          ]
+        ],
+        "neighbor_displacements_angstrom": [
+          [
+            0.0,
+            7.101408311032394,
+            0.0
+          ],
+          [
+            6.150000000000002,
+            -3.5507041555162004,
+            0.0
+          ],
+          [
+            -6.150000000000002,
+            -3.5507041555162004,
+            0.0
+          ]
+        ],
+        "neighbor_distances_angstrom": [
+          7.101408311032394,
+          7.1014083110324,
+          7.1014083110324
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          120.00000000000001,
+          119.99999999999999
+        ],
+        "fourth_neighbor_distance_angstrom": 12.299999999999997,
+        "original_atom_index": 0
+      },
+      {
+        "center_cartesian_angstrom": [
+          18.450000000000003,
+          39.057745710678184,
+          15.0
+        ],
+        "neighbor_cartesian_angstrom": [
+          [
+            18.450000000000003,
+            31.95633739964579,
+            15.0
+          ],
+          [
+            24.6,
+            42.608449866194384,
+            15.0
+          ],
+          [
+            12.300000000000004,
+            42.608449866194384,
+            15.0
+          ]
+        ],
+        "neighbor_displacements_angstrom": [
+          [
+            0.0,
+            -7.101408311032394,
+            0.0
+          ],
+          [
+            6.149999999999999,
+            3.5507041555162004,
+            0.0
+          ],
+          [
+            -6.149999999999999,
+            3.5507041555162004,
+            0.0
+          ]
+        ],
+        "neighbor_distances_angstrom": [
+          7.101408311032394,
+          7.1014083110323964,
+          7.1014083110323964
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          120.00000000000001,
+          119.99999999999997
+        ],
+        "fourth_neighbor_distance_angstrom": 12.299999999999997,
+        "original_atom_index": 17
+      }
+    ],
+    "method": "Ordinary Cartesian distance to every vacancy in a finite 7x7 repetition; no minimum-image wrapping."
+  }
+]

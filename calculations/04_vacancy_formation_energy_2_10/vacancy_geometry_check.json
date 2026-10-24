@@ -1,0 +1,839 @@
+[
+  {
+    "n": 2,
+    "vacancy_indices_zero_based": [
+      0,
+      3
+    ],
+    "vacancy_fractional_positions": [
+      [
+        0,
+        0
+      ],
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ]
+    ],
+    "parent_sublattices": [
+      "A",
+      "B"
+    ],
+    "nearest_vacancy_spacing_angstrom": 2.8405633244129587,
+    "explicit_repeat": [
+      7,
+      7,
+      1
+    ],
+    "explicit_vacancy_sites": 98,
+    "interior_sites_checked": 50,
+    "maximum_distance_spread_angstrom": 4.884981308350689e-15,
+    "maximum_angle_error_degrees": 9.947598300641403e-14,
+    "central_checks": [
+      {
+        "original_site_index": 0,
+        "nearest_displacements_angstrom": [
+          [
+            0.0,
+            2.8405633244129582,
+            0.0
+          ],
+          [
+            -2.46,
+            -1.4202816622064791,
+            0.0
+          ],
+          [
+            2.46,
+            -1.4202816622064791,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          2.8405633244129582,
+          2.8405633244129587,
+          2.8405633244129587
+        ],
+        "pairwise_angles_degrees": [
+          119.99999999999999,
+          119.99999999999999,
+          120.00000000000001
+        ]
+      },
+      {
+        "original_site_index": 3,
+        "nearest_displacements_angstrom": [
+          [
+            0.0,
+            -2.8405633244129582,
+            0.0
+          ],
+          [
+            -2.46,
+            1.4202816622064809,
+            0.0
+          ],
+          [
+            2.46,
+            1.4202816622064809,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          2.8405633244129582,
+          2.840563324412959,
+          2.840563324412959
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000004,
+          120.00000000000004,
+          119.99999999999997
+        ]
+      }
+    ]
+  },
+  {
+    "n": 3,
+    "vacancy_indices_zero_based": [
+      0,
+      10
+    ],
+    "vacancy_fractional_positions": [
+      [
+        0,
+        0
+      ],
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ]
+    ],
+    "parent_sublattices": [
+      "A",
+      "A"
+    ],
+    "nearest_vacancy_spacing_angstrom": 4.260844986619438,
+    "explicit_repeat": [
+      7,
+      7,
+      1
+    ],
+    "explicit_vacancy_sites": 98,
+    "interior_sites_checked": 50,
+    "maximum_distance_spread_angstrom": 6.217248937900877e-15,
+    "maximum_angle_error_degrees": 1.1368683772161603e-13,
+    "central_checks": [
+      {
+        "original_site_index": 0,
+        "nearest_displacements_angstrom": [
+          [
+            -3.6900000000000004,
+            -2.1304224933097196,
+            0.0
+          ],
+          [
+            0.0,
+            4.260844986619439,
+            0.0
+          ],
+          [
+            3.6900000000000013,
+            -2.1304224933097196,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          4.260844986619439,
+          4.260844986619439,
+          4.26084498661944
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          119.99999999999999,
+          119.99999999999999
+        ]
+      },
+      {
+        "original_site_index": 10,
+        "nearest_displacements_angstrom": [
+          [
+            -3.6899999999999995,
+            2.130422493309716,
+            0.0
+          ],
+          [
+            3.6899999999999995,
+            2.130422493309716,
+            0.0
+          ],
+          [
+            0.0,
+            -4.260844986619439,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          4.2608449866194364,
+          4.2608449866194364,
+          4.260844986619439
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000007,
+          119.99999999999997,
+          119.99999999999997
+        ]
+      }
+    ]
+  },
+  {
+    "n": 4,
+    "vacancy_indices_zero_based": [
+      0,
+      19
+    ],
+    "vacancy_fractional_positions": [
+      [
+        0,
+        0
+      ],
+      [
+        0.6666666666666666,
+        0.3333333333333333
+      ]
+    ],
+    "parent_sublattices": [
+      "A",
+      "B"
+    ],
+    "nearest_vacancy_spacing_angstrom": 5.681126648825917,
+    "explicit_repeat": [
+      7,
+      7,
+      1
+    ],
+    "explicit_vacancy_sites": 98,
+    "interior_sites_checked": 50,
+    "maximum_distance_spread_angstrom": 1.3322676295501878e-14,
+    "maximum_angle_error_degrees": 1.1368683772161603e-13,
+    "central_checks": [
+      {
+        "original_site_index": 0,
+        "nearest_displacements_angstrom": [
+          [
+            0.0,
+            -5.6811266488259164,
+            0.0
+          ],
+          [
+            -4.92,
+            2.8405633244129582,
+            0.0
+          ],
+          [
+            4.92,
+            2.8405633244129582,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          5.6811266488259164,
+          5.681126648825917,
+          5.681126648825917
+        ],
+        "pairwise_angles_degrees": [
+          119.99999999999999,
+          119.99999999999999,
+          120.00000000000001
+        ]
+      },
+      {
+        "original_site_index": 19,
+        "nearest_displacements_angstrom": [
+          [
+            -4.92,
+            -2.8405633244129582,
+            0.0
+          ],
+          [
+            4.920000000000002,
+            -2.8405633244129582,
+            0.0
+          ],
+          [
+            0.0,
+            5.68112664882592,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          5.681126648825917,
+          5.681126648825918,
+          5.68112664882592
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          119.99999999999999,
+          119.99999999999999
+        ]
+      }
+    ]
+  },
+  {
+    "n": 5,
+    "vacancy_indices_zero_based": [
+      0,
+      17
+    ],
+    "vacancy_fractional_positions": [
+      [
+        0,
+        0
+      ],
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ]
+    ],
+    "parent_sublattices": [
+      "A",
+      "B"
+    ],
+    "nearest_vacancy_spacing_angstrom": 7.101408311032397,
+    "explicit_repeat": [
+      7,
+      7,
+      1
+    ],
+    "explicit_vacancy_sites": 98,
+    "interior_sites_checked": 50,
+    "maximum_distance_spread_angstrom": 1.509903313490213e-14,
+    "maximum_angle_error_degrees": 1.4210854715202004e-13,
+    "central_checks": [
+      {
+        "original_site_index": 0,
+        "nearest_displacements_angstrom": [
+          [
+            0.0,
+            7.101408311032394,
+            0.0
+          ],
+          [
+            6.150000000000002,
+            -3.5507041555162004,
+            0.0
+          ],
+          [
+            -6.150000000000002,
+            -3.5507041555162004,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          7.101408311032394,
+          7.1014083110324,
+          7.1014083110324
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          120.00000000000001,
+          119.99999999999999
+        ]
+      },
+      {
+        "original_site_index": 17,
+        "nearest_displacements_angstrom": [
+          [
+            0.0,
+            -7.101408311032394,
+            0.0
+          ],
+          [
+            6.149999999999999,
+            3.5507041555162004,
+            0.0
+          ],
+          [
+            -6.149999999999999,
+            3.5507041555162004,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          7.101408311032394,
+          7.1014083110323964,
+          7.1014083110323964
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          120.00000000000001,
+          119.99999999999997
+        ]
+      }
+    ]
+  },
+  {
+    "n": 6,
+    "vacancy_indices_zero_based": [
+      0,
+      32
+    ],
+    "vacancy_fractional_positions": [
+      [
+        0,
+        0
+      ],
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ]
+    ],
+    "parent_sublattices": [
+      "A",
+      "A"
+    ],
+    "nearest_vacancy_spacing_angstrom": 8.521689973238876,
+    "explicit_repeat": [
+      7,
+      7,
+      1
+    ],
+    "explicit_vacancy_sites": 98,
+    "interior_sites_checked": 50,
+    "maximum_distance_spread_angstrom": 1.2434497875801753e-14,
+    "maximum_angle_error_degrees": 1.1368683772161603e-13,
+    "central_checks": [
+      {
+        "original_site_index": 0,
+        "nearest_displacements_angstrom": [
+          [
+            -7.380000000000001,
+            -4.260844986619439,
+            0.0
+          ],
+          [
+            0.0,
+            8.521689973238878,
+            0.0
+          ],
+          [
+            7.380000000000003,
+            -4.260844986619439,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          8.521689973238878,
+          8.521689973238878,
+          8.52168997323888
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          119.99999999999999,
+          119.99999999999999
+        ]
+      },
+      {
+        "original_site_index": 32,
+        "nearest_displacements_angstrom": [
+          [
+            -7.379999999999999,
+            4.260844986619432,
+            0.0
+          ],
+          [
+            7.379999999999999,
+            4.260844986619432,
+            0.0
+          ],
+          [
+            0.0,
+            -8.521689973238878,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          8.521689973238873,
+          8.521689973238873,
+          8.521689973238878
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000007,
+          119.99999999999997,
+          119.99999999999997
+        ]
+      }
+    ]
+  },
+  {
+    "n": 7,
+    "vacancy_indices_zero_based": [
+      0,
+      61
+    ],
+    "vacancy_fractional_positions": [
+      [
+        0,
+        0
+      ],
+      [
+        0.6666666666666666,
+        0.3333333333333333
+      ]
+    ],
+    "parent_sublattices": [
+      "A",
+      "B"
+    ],
+    "nearest_vacancy_spacing_angstrom": 9.941971635445356,
+    "explicit_repeat": [
+      7,
+      7,
+      1
+    ],
+    "explicit_vacancy_sites": 98,
+    "interior_sites_checked": 50,
+    "maximum_distance_spread_angstrom": 0.0,
+    "maximum_angle_error_degrees": 1.4210854715202004e-14,
+    "central_checks": [
+      {
+        "original_site_index": 0,
+        "nearest_displacements_angstrom": [
+          [
+            -8.61,
+            4.970985817722678,
+            0.0
+          ],
+          [
+            0.0,
+            -9.941971635445356,
+            0.0
+          ],
+          [
+            8.61,
+            4.970985817722678,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          9.941971635445356,
+          9.941971635445356,
+          9.941971635445356
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          119.99999999999999,
+          120.00000000000001
+        ]
+      },
+      {
+        "original_site_index": 61,
+        "nearest_displacements_angstrom": [
+          [
+            -8.61,
+            -4.970985817722678,
+            0.0
+          ],
+          [
+            0.0,
+            9.941971635445356,
+            0.0
+          ],
+          [
+            8.61,
+            -4.970985817722678,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          9.941971635445356,
+          9.941971635445356,
+          9.941971635445356
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          119.99999999999999,
+          120.00000000000001
+        ]
+      }
+    ]
+  },
+  {
+    "n": 8,
+    "vacancy_indices_zero_based": [
+      0,
+      43
+    ],
+    "vacancy_fractional_positions": [
+      [
+        0,
+        0
+      ],
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ]
+    ],
+    "parent_sublattices": [
+      "A",
+      "B"
+    ],
+    "nearest_vacancy_spacing_angstrom": 11.362253297651835,
+    "explicit_repeat": [
+      7,
+      7,
+      1
+    ],
+    "explicit_vacancy_sites": 98,
+    "interior_sites_checked": 50,
+    "maximum_distance_spread_angstrom": 1.9539925233402755e-14,
+    "maximum_angle_error_degrees": 9.947598300641403e-14,
+    "central_checks": [
+      {
+        "original_site_index": 0,
+        "nearest_displacements_angstrom": [
+          [
+            -9.84,
+            -5.681126648825909,
+            0.0
+          ],
+          [
+            9.84,
+            -5.681126648825909,
+            0.0
+          ],
+          [
+            0.0,
+            11.362253297651833,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          11.362253297651831,
+          11.362253297651831,
+          11.362253297651833
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000007,
+          119.99999999999997,
+          119.99999999999997
+        ]
+      },
+      {
+        "original_site_index": 43,
+        "nearest_displacements_angstrom": [
+          [
+            0.0,
+            -11.362253297651833,
+            0.0
+          ],
+          [
+            -9.84,
+            5.6811266488259236,
+            0.0
+          ],
+          [
+            9.84,
+            5.6811266488259236,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          11.362253297651833,
+          11.362253297651836,
+          11.362253297651836
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000004,
+          120.00000000000004,
+          119.99999999999997
+        ]
+      }
+    ]
+  },
+  {
+    "n": 9,
+    "vacancy_indices_zero_based": [
+      0,
+      66
+    ],
+    "vacancy_fractional_positions": [
+      [
+        0,
+        0
+      ],
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ]
+    ],
+    "parent_sublattices": [
+      "A",
+      "A"
+    ],
+    "nearest_vacancy_spacing_angstrom": 12.782534959858316,
+    "explicit_repeat": [
+      7,
+      7,
+      1
+    ],
+    "explicit_vacancy_sites": 98,
+    "interior_sites_checked": 50,
+    "maximum_distance_spread_angstrom": 1.4210854715202004e-14,
+    "maximum_angle_error_degrees": 8.526512829121202e-14,
+    "central_checks": [
+      {
+        "original_site_index": 0,
+        "nearest_displacements_angstrom": [
+          [
+            0.0,
+            12.782534959858317,
+            0.0
+          ],
+          [
+            -11.07,
+            -6.391267479929162,
+            0.0
+          ],
+          [
+            11.07,
+            -6.391267479929162,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          12.782534959858317,
+          12.782534959858317,
+          12.782534959858317
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          120.00000000000001,
+          119.99999999999997
+        ]
+      },
+      {
+        "original_site_index": 66,
+        "nearest_displacements_angstrom": [
+          [
+            -11.07,
+            6.391267479929155,
+            0.0
+          ],
+          [
+            11.07,
+            6.391267479929155,
+            0.0
+          ],
+          [
+            0.0,
+            -12.782534959858317,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          12.782534959858314,
+          12.782534959858314,
+          12.782534959858317
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          119.99999999999999,
+          119.99999999999999
+        ]
+      }
+    ]
+  },
+  {
+    "n": 10,
+    "vacancy_indices_zero_based": [
+      0,
+      127
+    ],
+    "vacancy_fractional_positions": [
+      [
+        0,
+        0
+      ],
+      [
+        0.6666666666666666,
+        0.3333333333333333
+      ]
+    ],
+    "parent_sublattices": [
+      "A",
+      "B"
+    ],
+    "nearest_vacancy_spacing_angstrom": 14.202816622064795,
+    "explicit_repeat": [
+      7,
+      7,
+      1
+    ],
+    "explicit_vacancy_sites": 98,
+    "interior_sites_checked": 50,
+    "maximum_distance_spread_angstrom": 2.4868995751603507e-14,
+    "maximum_angle_error_degrees": 9.947598300641403e-14,
+    "central_checks": [
+      {
+        "original_site_index": 0,
+        "nearest_displacements_angstrom": [
+          [
+            12.299999999999997,
+            7.101408311032401,
+            0.0
+          ],
+          [
+            -12.300000000000004,
+            7.101408311032401,
+            0.0
+          ],
+          [
+            0.0,
+            -14.202816622064802,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          14.202816622064793,
+          14.2028166220648,
+          14.202816622064802
+        ],
+        "pairwise_angles_degrees": [
+          119.99999999999997,
+          120.00000000000001,
+          120.00000000000001
+        ]
+      },
+      {
+        "original_site_index": 127,
+        "nearest_displacements_angstrom": [
+          [
+            0.0,
+            14.202816622064788,
+            0.0
+          ],
+          [
+            -12.299999999999997,
+            -7.101408311032401,
+            0.0
+          ],
+          [
+            12.299999999999997,
+            -7.101408311032401,
+            0.0
+          ]
+        ],
+        "nearest_distances_angstrom": [
+          14.202816622064788,
+          14.202816622064793,
+          14.202816622064793
+        ],
+        "pairwise_angles_degrees": [
+          120.00000000000001,
+          120.00000000000001,
+          119.99999999999997
+        ]
+      }
+    ]
+  }
+]

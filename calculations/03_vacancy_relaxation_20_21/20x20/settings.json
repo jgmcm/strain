@@ -1,0 +1,27 @@
+{
+  "model_name": "MACE-MPA-0 medium",
+  "model_path": "../02_vacancy_relaxation/.models/mace-mpa-0-medium.model",
+  "device": "cpu",
+  "dtype": "float64",
+  "cpu_threads": 4,
+  "lattice_constant_angstrom": 2.46,
+  "vacuum_per_side_angstrom": 15.0,
+  "cell_policy": "fixed",
+  "fmax_eV_per_angstrom": 0.005,
+  "max_steps": 1000,
+  "max_step_angstrom": 0.1,
+  "seed": 20261010,
+  "initial_perturbation_std_angstrom": 0.01,
+  "vacancy_indices_zero_based": {
+    "20": [
+      0,
+      267
+    ],
+    "21": [
+      0,
+      322
+    ]
+  },
+  "n": 20,
+  "model_sha256": "75428afe3a1d7d8062e19bcaabd5c433623cabf308242ec9fb493e38604fb638"
+}

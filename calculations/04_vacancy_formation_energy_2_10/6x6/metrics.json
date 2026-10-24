@@ -1,0 +1,29 @@
+{
+  "n": 6,
+  "carbon_atoms": 70,
+  "converged": true,
+  "optimizer": "ASE BFGS",
+  "steps": 18,
+  "fmax_eV_per_angstrom": 0.004589484114707265,
+  "force_tolerance_eV_per_angstrom": 0.005,
+  "ideal_defective_energy_eV": -629.8512958254389,
+  "perturbed_initial_energy_eV": -629.3576361874586,
+  "relaxed_energy_eV": -630.36154038493,
+  "energy_change_from_ideal_eV": -0.5102445594910705,
+  "max_u_xy_angstrom": 0.09126005080872092,
+  "rms_u_xy_angstrom": 0.03705864292950546,
+  "max_u_3d_angstrom": 0.09126466220468966,
+  "z_range_angstrom": 0.010522982794201496,
+  "removed_rigid_translation_angstrom": [
+    1.2610634263023255e-15,
+    -8.382183835919932e-16,
+    -3.0451831532575723e-16
+  ],
+  "cell_policy": "fixed; all atomic coordinates free in 3D",
+  "displacement_definition": "Minimum-image final minus ideal surviving-site positions, minus mean rigid translation; primary plotted magnitude sqrt(ux^2+uy^2).",
+  "strain_tensor": "Not computed; displacement magnitude is not strain.",
+  "model_name": "MACE-MPA-0 medium",
+  "model_sha256": "75428afe3a1d7d8062e19bcaabd5c433623cabf308242ec9fb493e38604fb638",
+  "elapsed_seconds_this_invocation": 5.28012700000545,
+  "completed_utc": "2026-10-10T17:19:57.607599+00:00"
+}

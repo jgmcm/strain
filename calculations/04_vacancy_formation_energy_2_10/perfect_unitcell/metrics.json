@@ -1,0 +1,12 @@
+{
+  "carbon_atoms": 2,
+  "energy_eV": -18.407624130100782,
+  "carbon_chemical_potential_eV": -9.203812065050391,
+  "fmax_eV_per_angstrom": 9.784778863468757e-15,
+  "lattice_constant_angstrom": 2.46,
+  "vacuum_per_side_angstrom": 15.0,
+  "reference_policy": "Single point on ideal two-carbon graphene unit cell; fixed lattice matching all defect cells.",
+  "model_name": "MACE-MPA-0 medium",
+  "model_sha256": "75428afe3a1d7d8062e19bcaabd5c433623cabf308242ec9fb493e38604fb638",
+  "computed_utc": "2026-10-10T17:19:38.192762+00:00"
+}

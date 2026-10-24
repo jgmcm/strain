@@ -1,0 +1,24 @@
+{
+  "sizes": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "all_nine_converged": true,
+  "maximum_final_force_eV_per_angstrom": 0.004932560187434282,
+  "maximum_perfect_supercell_extensivity_error_eV": 2.9558577807620168e-12,
+  "maximum_vacancy_distance_spread_angstrom": 2.4868995751603507e-14,
+  "maximum_vacancy_angle_error_degrees": 1.4210854715202004e-13,
+  "checks": [
+    "All sizes 2 through 10, atom counts, site indices, fixed cells, in-plane PBC, convergence, model hash, saved energies, formation-expression readback and CSV/JSON agreement.",
+    "Fresh MACE energies and forces and equivalent standard formation expression are asserted by relax.py at extraction.",
+    "Perfect-supercell energies equal 2*n*n times the unit-cell energy per carbon.",
+    "Explicit 7x7 repeat verifies 50 interior vacancy sites for each size."
+  ]
+}

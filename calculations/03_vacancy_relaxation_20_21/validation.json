@@ -1,0 +1,42 @@
+{
+  "checks": [
+    {
+      "n": 20,
+      "passed": true,
+      "fresh_fmax_eV_per_angstrom": 0.004324113584680763,
+      "energy_difference_from_saved_eV": -1.2187229003757238e-10,
+      "maximum_periodic_edge_error_angstrom": 1.7763568394002505e-15,
+      "vacancy_neighbor_pair_distances_angstrom": [
+        [
+          1.8132337031111663,
+          2.4630921072384244,
+          2.4670156230889755
+        ],
+        [
+          2.466905689333282,
+          2.4639043717648126,
+          1.8132486256242468
+        ]
+      ]
+    },
+    {
+      "n": 21,
+      "passed": true,
+      "fresh_fmax_eV_per_angstrom": 0.0048112088045113004,
+      "energy_difference_from_saved_eV": 3.728928277269006e-11,
+      "maximum_periodic_edge_error_angstrom": 5.551115123125783e-16,
+      "vacancy_neighbor_pair_distances_angstrom": [
+        [
+          2.290210719534952,
+          2.2864041055940882,
+          2.2836951508688266
+        ],
+        [
+          2.2822143582429124,
+          2.298381124923601,
+          2.2808791311667256
+        ]
+      ]
+    }
+  ]
+}

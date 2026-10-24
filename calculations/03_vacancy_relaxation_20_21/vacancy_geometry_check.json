@@ -1,0 +1,64 @@
+[
+  {
+    "n": 20,
+    "original_vacancy_indices_zero_based": [
+      0,
+      267
+    ],
+    "parent_sublattices": [
+      "A",
+      "B"
+    ],
+    "full_cell_fractional_xy": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ]
+    ],
+    "explicit_repeat": [
+      7,
+      7,
+      1
+    ],
+    "vacancy_sites_in_repeat": 98,
+    "interior_sites_verified": 50,
+    "nearest_vacancy_distance_angstrom": 28.40563324412959,
+    "max_distance_spread_angstrom": 6.039613253960852e-14,
+    "max_angle_error_degrees": 1.4210854715202004e-13
+  },
+  {
+    "n": 21,
+    "original_vacancy_indices_zero_based": [
+      0,
+      322
+    ],
+    "parent_sublattices": [
+      "A",
+      "A"
+    ],
+    "full_cell_fractional_xy": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.3333333333333333,
+        0.6666666666666666
+      ]
+    ],
+    "explicit_repeat": [
+      7,
+      7,
+      1
+    ],
+    "vacancy_sites_in_repeat": 98,
+    "interior_sites_verified": 50,
+    "nearest_vacancy_distance_angstrom": 29.825914906336067,
+    "max_distance_spread_angstrom": 4.973799150320701e-14,
+    "max_angle_error_degrees": 1.7053025658242404e-13
+  }
+]
