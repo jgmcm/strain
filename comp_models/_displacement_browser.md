@@ -1,0 +1,49 @@
+```{=html}
+<div id="displacement-browser" class="displacement-browser" tabindex="-1">
+<div class="d-flex flex-wrap gap-2 align-items-center mb-2">
+<button type="button" class="btn btn-sm btn-outline-secondary" data-step="-1" aria-label="Previous model">← Previous</button>
+<select class="form-select form-select-sm w-auto" aria-label="Model"><optgroup label="MACE-MP-0"><option value="mace-mp-0-small">MACE-MP-0 small</option><option value="mace-mp-0-medium">MACE-MP-0 medium</option><option value="mace-mp-0-large">MACE-MP-0 large</option></optgroup><optgroup label="MACE-MP-0b2/0b3"><option value="mace-mp-0b2-small">MACE-MP-0b2 small</option><option value="mace-mp-0b2-medium">MACE-MP-0b2 medium</option><option value="mace-mp-0b2-large">MACE-MP-0b2 large</option><option value="mace-mp-0b3-medium">MACE-MP-0b3 medium</option></optgroup><optgroup label="MACE-MPA-0 and OMAT-0"><option value="mace-mpa-0-medium">MACE-MPA-0 medium</option><option value="mace-omat-0-small">MACE-OMAT-0 small</option><option value="mace-omat-0-medium">MACE-OMAT-0 medium</option></optgroup><optgroup label="MACE-MATPES-0"><option value="mace-matpes-pbe-0">MACE-MATPES-PBE-0</option><option value="mace-matpes-r2scan-0">MACE-MATPES-r2SCAN-0</option></optgroup><optgroup label="MACE-MH"><option value="mace-mh-0-omat-pbe">MACE-MH-0 omat_pbe</option><option value="mace-mh-0-matpes-r2scan">MACE-MH-0 matpes_r2scan</option><option value="mace-mh-1-omat-pbe">MACE-MH-1 omat_pbe</option><option value="mace-mh-1-matpes-r2scan">MACE-MH-1 matpes_r2scan</option></optgroup><optgroup label="MatterSim"><option value="mattersim-1m">MatterSim v1.0.0-1M</option><option value="mattersim-5m">MatterSim v1.0.0-5M</option></optgroup><optgroup label="MACE-OFF23 (out of domain)"><option value="mace-off23-medium">MACE-OFF23 medium</option></optgroup></select>
+<button type="button" class="btn btn-sm btn-outline-secondary" data-step="1" aria-label="Next model">Next →</button>
+<div class="btn-group btn-group-sm" role="group" aria-label="Colour scale">
+<input type="radio" class="btn-check" name="displacement-scale" id="displacement-scale-common" value="common" checked>
+<label class="btn btn-outline-secondary" for="displacement-scale-common">Shared scale</label>
+<input type="radio" class="btn-check" name="displacement-scale" id="displacement-scale-own" value="own">
+<label class="btn btn-outline-secondary" for="displacement-scale-own">Model's own scale</label>
+</div>
+</div>
+<p class="small text-body-secondary mb-2" data-role="caption" aria-live="polite"></p>
+<img data-role="image" class="img-fluid" alt="">
+</div>
+<script>
+(() => {
+  const models = [{"key": "mace-mp-0-small", "label": "MACE-MP-0 small", "family": "MACE-MP-0", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.127, "steps": 22, "reconstructed": false}, {"n": 5, "maxU": 0.159, "steps": 18, "reconstructed": false}]}, {"key": "mace-mp-0-medium", "label": "MACE-MP-0 medium", "family": "MACE-MP-0", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.108, "steps": 22, "reconstructed": false}, {"n": 5, "maxU": 0.139, "steps": 17, "reconstructed": false}]}, {"key": "mace-mp-0-large", "label": "MACE-MP-0 large", "family": "MACE-MP-0", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.051, "steps": 24, "reconstructed": false}, {"n": 5, "maxU": 0.044, "steps": 17, "reconstructed": false}]}, {"key": "mace-mp-0b2-small", "label": "MACE-MP-0b2 small", "family": "MACE-MP-0b2/0b3", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.382, "steps": 50, "reconstructed": true}, {"n": 5, "maxU": 0.35, "steps": 1046, "reconstructed": true}]}, {"key": "mace-mp-0b2-medium", "label": "MACE-MP-0b2 medium", "family": "MACE-MP-0b2/0b3", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.029, "steps": 25, "reconstructed": false}, {"n": 5, "maxU": 0.027, "steps": 19, "reconstructed": false}]}, {"key": "mace-mp-0b2-large", "label": "MACE-MP-0b2 large", "family": "MACE-MP-0b2/0b3", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.051, "steps": 24, "reconstructed": false}, {"n": 5, "maxU": 0.038, "steps": 19, "reconstructed": false}]}, {"key": "mace-mp-0b3-medium", "label": "MACE-MP-0b3 medium", "family": "MACE-MP-0b2/0b3", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.03, "steps": 26, "reconstructed": false}, {"n": 5, "maxU": 0.354, "steps": 78, "reconstructed": true}]}, {"key": "mace-mpa-0-medium", "label": "MACE-MPA-0 medium", "family": "MACE-MPA-0 and OMAT-0", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.056, "steps": 22, "reconstructed": false}, {"n": 5, "maxU": 0.082, "steps": 18, "reconstructed": false}]}, {"key": "mace-omat-0-small", "label": "MACE-OMAT-0 small", "family": "MACE-MPA-0 and OMAT-0", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.041, "steps": 23, "reconstructed": false}, {"n": 5, "maxU": 0.051, "steps": 18, "reconstructed": false}]}, {"key": "mace-omat-0-medium", "label": "MACE-OMAT-0 medium", "family": "MACE-MPA-0 and OMAT-0", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.045, "steps": 22, "reconstructed": false}, {"n": 5, "maxU": 0.043, "steps": 17, "reconstructed": false}]}, {"key": "mace-matpes-pbe-0", "label": "MACE-MATPES-PBE-0", "family": "MACE-MATPES-0", "theory": "PBE", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.034, "steps": 23, "reconstructed": false}, {"n": 5, "maxU": 0.034, "steps": 16, "reconstructed": false}]}, {"key": "mace-matpes-r2scan-0", "label": "MACE-MATPES-r2SCAN-0", "family": "MACE-MATPES-0", "theory": "r²SCAN", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.031, "steps": 23, "reconstructed": false}, {"n": 5, "maxU": 0.023, "steps": 17, "reconstructed": false}]}, {"key": "mace-mh-0-omat-pbe", "label": "MACE-MH-0 omat_pbe", "family": "MACE-MH", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.045, "steps": 22, "reconstructed": false}, {"n": 5, "maxU": 0.058, "steps": 17, "reconstructed": false}]}, {"key": "mace-mh-0-matpes-r2scan", "label": "MACE-MH-0 matpes_r2scan", "family": "MACE-MH", "theory": "r²SCAN", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.037, "steps": 23, "reconstructed": false}, {"n": 5, "maxU": 0.048, "steps": 17, "reconstructed": false}]}, {"key": "mace-mh-1-omat-pbe", "label": "MACE-MH-1 omat_pbe", "family": "MACE-MH", "theory": "PBE/PBE+U", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.039, "steps": 20, "reconstructed": false}, {"n": 5, "maxU": 0.038, "steps": 17, "reconstructed": false}]}, {"key": "mace-mh-1-matpes-r2scan", "label": "MACE-MH-1 matpes_r2scan", "family": "MACE-MH", "theory": "r²SCAN", "dtype": "float64", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.035, "steps": 20, "reconstructed": false}, {"n": 5, "maxU": 0.029, "steps": 17, "reconstructed": false}]}, {"key": "mattersim-1m", "label": "MatterSim v1.0.0-1M", "family": "MatterSim", "theory": "PBE/PBE+U", "dtype": "float32", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.072, "steps": 22, "reconstructed": false}, {"n": 5, "maxU": 0.095, "steps": 18, "reconstructed": false}]}, {"key": "mattersim-5m", "label": "MatterSim v1.0.0-5M", "family": "MatterSim", "theory": "PBE/PBE+U", "dtype": "float32", "outOfDomain": false, "cells": [{"n": 4, "maxU": 0.022, "steps": 23, "reconstructed": false}, {"n": 5, "maxU": 0.037, "steps": 18, "reconstructed": false}]}, {"key": "mace-off23-medium", "label": "MACE-OFF23 medium", "family": "MACE-OFF23 (out of domain)", "theory": "ωB97M-D3(BJ)", "dtype": "float64", "outOfDomain": true, "cells": [{"n": 4, "maxU": 0.058, "steps": 26, "reconstructed": false}, {"n": 5, "maxU": 0.059, "steps": 19, "reconstructed": false}]}];
+  const root = document.getElementById("displacement-browser");
+  const select = root.querySelector("select");
+  const image = root.querySelector('[data-role="image"]');
+  const caption = root.querySelector('[data-role="caption"]');
+  let index = models.findIndex((m) => m.key === "mace-mpa-0-medium");
+  const scale = () => root.querySelector('input[name="displacement-scale"]:checked').value;
+  const describe = (c) => `${c.n} × ${c.n}: max |u∥| ${c.maxU.toFixed(3)} Å, ${c.steps} steps` +
+    (c.reconstructed ? ", reconstructed vacancy" : "");
+  function render() {
+    const m = models[index];
+    select.value = m.key;
+    image.src = `figures/displacement/${scale()}_${m.key}.png`;
+    image.alt = `Gouraud-shaded displacement magnitude with contour lines for ${m.label}, 4 × 4 and 5 × 5 cells`;
+    caption.textContent = `${index + 1} of ${models.length} · ${m.label}` +
+      (m.outOfDomain ? " (outside training domain)" : "") +
+      ` · ${m.theory} · ${m.dtype} · ` + m.cells.map(describe).join(" · ");
+  }
+  const step = (delta) => { index = (index + delta + models.length) % models.length; render(); };
+  root.querySelectorAll("button[data-step]").forEach((b) => b.addEventListener("click", () => step(Number(b.dataset.step))));
+  select.addEventListener("change", () => { index = models.findIndex((m) => m.key === select.value); render(); });
+  root.querySelectorAll('input[name="displacement-scale"]').forEach((r) => r.addEventListener("change", render));
+  root.addEventListener("keydown", (event) => {
+    if (event.target.tagName === "SELECT") return;
+    if (event.key === "ArrowLeft") { step(-1); event.preventDefault(); }
+    if (event.key === "ArrowRight") { step(1); event.preventDefault(); }
+  });
+  render();
+})();
+</script>
+```

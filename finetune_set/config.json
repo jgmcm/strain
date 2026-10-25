@@ -1,0 +1,31 @@
+{
+  "relax": {
+    "optimizer": "FIRE",
+    "fmax_eV_per_angstrom": 0.05,
+    "max_steps": 200,
+    "saved_intermediate_steps": [
+      3,
+      10,
+      30,
+      80
+    ]
+  },
+  "md": {
+    "fraction_of_configs": 0.5,
+    "temperatures_K": {
+      "300": 0.25,
+      "600": 0.2,
+      "1000": 0.2,
+      "1500": 0.2,
+      "2000": 0.15
+    },
+    "timestep_fs": 1.0,
+    "timestep_fs_with_hydrogen": 0.5,
+    "friction_per_fs": 0.02,
+    "total_time_fs": 600,
+    "equilibration_fs": 100,
+    "save_every_fs": 20,
+    "abort_max_force_eV_per_angstrom": 50.0
+  },
+  "dtype": "float32"
+}

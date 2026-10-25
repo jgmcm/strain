@@ -5,6 +5,18 @@ project:
     - project.qmd
     - calculations/calculations.qmd
     - fig1_strain/notes.qmd
+    - comp_models/notes.qmd
+    - finetune_set/index.qmd
+    - finetune_set/steps/01_committee.qmd
+    - finetune_set/steps/02_configurations.qmd
+    - finetune_set/steps/03_sampling.qmd
+    - finetune_set/steps/04_disagreement.qmd
+    - finetune_set/steps/05_selection.qmd
+    - finetune_set/ts/index.qmd
+    - finetune_set/ts/steps/01_processes.qmd
+    - finetune_set/ts/steps/02_neb.qmd
+    - finetune_set/ts/steps/03_committee.qmd
+    - finetune_set/ts/steps/04_selection.qmd
 website:
   title: "Strain engineering"
   navbar:
@@ -15,12 +27,32 @@ website:
         text: Calculations
       - href: fig1_strain/notes.qmd
         text: Figure 1
+      - href: comp_models/notes.qmd
+        text: Model comparison
+      - href: finetune_set/index.qmd
+        text: Fine-tune set
   sidebar:
     style: docked
     contents:
       - project.qmd
       - calculations/calculations.qmd
       - fig1_strain/notes.qmd
+      - comp_models/notes.qmd
+      - section: "Fine-tune set"
+        href: finetune_set/index.qmd
+        contents:
+          - finetune_set/steps/01_committee.qmd
+          - finetune_set/steps/02_configurations.qmd
+          - finetune_set/steps/03_sampling.qmd
+          - finetune_set/steps/04_disagreement.qmd
+          - finetune_set/steps/05_selection.qmd
+          - section: "Transition states"
+            href: finetune_set/ts/index.qmd
+            contents:
+              - finetune_set/ts/steps/01_processes.qmd
+              - finetune_set/ts/steps/02_neb.qmd
+              - finetune_set/ts/steps/03_committee.qmd
+              - finetune_set/ts/steps/04_selection.qmd
 format:
   html:
     theme: cosmo

@@ -1,0 +1,38 @@
+{
+  "strain_estimator_self_test": {
+    "zero_displacement_max_abs_strain": 1.1102230246251565e-16,
+    "homogeneous_F_max_error": 4.440892098500626e-16,
+    "zero_displacement_max_abs_bond_strain": 0.0,
+    "second_neighbour_counts": [
+      5,
+      6
+    ]
+  },
+  "mace_mpa_0_vs_calculation_02": [
+    {
+      "n": 4,
+      "reference_max_position_difference_angstrom": 0.0,
+      "initial_max_position_difference_angstrom": 0.0,
+      "relaxed_max_position_difference_angstrom": 0.0,
+      "relaxed_energy_difference_eV": 5.684341886080802e-14,
+      "steps_new_old": [
+        22,
+        22
+      ]
+    },
+    {
+      "n": 5,
+      "reference_max_position_difference_angstrom": 0.0,
+      "initial_max_position_difference_angstrom": 0.0,
+      "relaxed_max_position_difference_angstrom": 0.0,
+      "relaxed_energy_difference_eV": 5.684341886080802e-14,
+      "steps_new_old": [
+        18,
+        18
+      ]
+    }
+  ],
+  "all_runs_converged_and_fresh_evaluation_passed": true,
+  "max_displacement_csv_difference_angstrom": 9.762983159758432e-09,
+  "max_z_range_angstrom": 0.017326425001998658
+}

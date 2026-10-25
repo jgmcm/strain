@@ -11,3 +11,7 @@ __pycache__/
 **/optimizer.json
 
 /.quarto/
+
+# Large intermediate data for the fine-tune set (candidate pool, committee predictions)
+finetune_set/work/
+finetune_set/ts/work/

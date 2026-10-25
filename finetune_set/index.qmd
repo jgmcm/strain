@@ -1,0 +1,47 @@
+---
+title: "Fine-tune set"
+---
+
+A set of graphene structures for fine-tuning an interatomic potential for strain,
+rippling and curvature, and point defects: Stone–Wales defects, vacancies,
+divacancies and larger vacancy clusters, and interstitial and adsorbed atoms.
+The structures were generated with five foundation models, scored by a
+21-member committee, and reduced to the frames where the committee disagrees
+most, keeping the set structurally diverse.
+
+{{< include steps/_overview_status.md >}}
+
+A second set, of [transition states](ts/index.qmd) for point-defect processes,
+comes from climbing-image NEB calculations and has its own pages.
+
+## Steps
+
+Each step has its own page with methods, settings and results.
+
+1. [Committee](steps/01_committee.qmd): the 21 members, the three new models of
+   about 3–4.5 million parameters, the conda environments and the five generator
+   models.
+2. [Starting configurations](steps/02_configurations.qmd): 1,300 sheets,
+   nanotubes and C60 cages, with defects, strain and curvature, each with at
+   most 100 atoms.
+3. [Relaxation and MD](steps/03_sampling.qmd): FIRE relaxations and Langevin MD
+   at 300–2000 K with the generator models, and the filters for unphysical
+   frames.
+4. [Committee evaluation](steps/04_disagreement.qmd): batched energies and
+   forces for every candidate frame, force and energy disagreement, and how far
+   each member sits from the rest.
+5. [Selection](steps/05_selection.qmd): disagreement score, diversity-weighted
+   greedy selection, the stopping rule and the output file.
+
+## Files
+
+| File | Contents |
+|---|---|
+| `finetune_selected.extxyz` | The selected frames (the deliverable) |
+| `candidate_scores.csv.gz` | Disagreement scores for every candidate frame |
+| `committee.json` | Committee members, checkpoints, checksums and generators |
+| `config.json` | Relaxation and MD settings |
+| `configs_summary.json`, `candidates_summary.json`, `selection_summary.json` | Counts at each step |
+| `work/` (ignored by git) | Starting configurations, sampled frames, candidate pool and committee predictions |
+
+The [README](README.md) lists the commands that reproduce each step.

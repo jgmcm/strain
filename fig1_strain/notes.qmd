@@ -33,6 +33,8 @@ the original atom magnitudes on a triangulation including periodic images.
 Black `tricontour` lines show constant-magnitude contours. Both cells use the same
 colour scale as the vector figure; triangles containing missing sites are masked.
 The CSV files retain all three displacement components for later strain analysis.
+The [model comparison page](../comp_models/notes.qmd#displacement-maps-by-model)
+shows this plot for each of 19 foundation-model configurations.
 
 ## Larger cells: calculation 03
 

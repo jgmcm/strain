@@ -1,0 +1,55 @@
+---
+title: "TS 1 · Processes and end states"
+---
+
+`ts/build_pairs.py` builds pairs of end states for elementary point-defect
+processes. In each pair, the initial and final states contain the same atoms in
+the same order and differ only in where the moving atoms sit. The
+`event_atoms` field records those atoms. Each process is set up on the
+undeformed framework, and both end states then receive the same strain and
+curvature. Every structure is periodic in all three directions, has at most 100
+atoms, and has at least 12 Å of vacuum between periodic images.
+
+## Processes
+
+The processes cover vacancy migration and coalescence, bond rotations with and
+without nearby defects, adatom migration, and recombination of adatoms with
+vacancies:
+
+| Process | Initial state | Final state | Interior images |
+|---|---|---|---:|
+| V1 hop | monovacancy | a neighbouring carbon atom has moved into the vacant site | 5 |
+| V2 hop, V3/V4 hop | vacancy cluster of 2, 3 or 4 sites | a carbon atom next to the cluster has moved into one of its sites | 5 |
+| V1+V1 coalescence | two monovacancies on second-neighbour sites | their common neighbour has moved into one of them, leaving a divacancy | 5 |
+| V1 reconstruction switch | monovacancy with two of the three under-coordinated atoms pulled together | a different pair pulled together | 5 |
+| SW formation | pristine lattice | one C–C bond rotated by 90° about its midpoint and the local surface normal | 7 |
+| Bond rotation at V1, V2, V3/V4, SW or an adatom | the defect | a C–C bond within 3.5 Å of it rotated by 90° | 7 |
+| Adatom hop | C, O or N on a bridge site, or H, F or N on a top site | the same atom on a neighbouring site of the same kind | 5 |
+| Adatom hop near vacancy, C adatom hop near C adatom | as above, next to a monovacancy or a second C adatom | as above | 5 |
+| Frenkel recombination | monovacancy and a C adatom on a bridge site 1.5–4.5 Å away | the adatom in the vacant site | 7 |
+| Adatom capture at vacancy | monovacancy and an H, O, N or F adatom 1.5–4.5 Å away | the adatom at the vacancy: N or O above its centre, H or F bonded to an under-coordinated atom | 7 |
+
+Bond rotations at a divacancy include the 5-8-5 to 555-777 transformation when
+the rotated bond is the right one. A bond rotation within 3.5 Å of a
+Stone–Wales defect can rotate the Stone–Wales bond back, which is Stone–Wales
+annihilation.
+
+## Frameworks, strain and curvature
+
+Sheets make up 75 % of the pairs, nanotubes 17 % and C60 8 %:
+
+- Sheets: hexagonal $n \times n$ cells with $n = 4$–7 (32–98 atoms), or
+  rectangular cells of 4-atom units with 48–80 atoms. These are smaller on
+  average than in the first set, because the cost of an NEB grows with the
+  number of atoms times the number of images. Sheets receive the strain modes of
+  the first set (none, uniaxial up to +15 %, biaxial, shear, general) and are
+  flat (45 %), carry a 1D ripple (35 %) or carry a 2D ripple (20 %). Ripples
+  come with in-plane compression, which keeps them in place when the end states
+  relax with the cell fixed. Bumps and random corrugation are not used, because
+  they would flatten during the relaxation.
+- Nanotubes: the nine armchair and zigzag tubes of the first set, with axial
+  strain from −3 % to +12 % in 70 % of pairs and an elliptical cross-section in
+  40 %.
+- C60 in a 22 Å cubic cell.
+
+{{< include _pairs_tables.md >}}

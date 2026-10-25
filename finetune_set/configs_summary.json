@@ -1,0 +1,72 @@
+{
+  "n_configs": 1300,
+  "seed": 20261025,
+  "framework": {
+    "sheet": 994,
+    "nanotube": 194,
+    "fullerene": 112
+  },
+  "defect_class": {
+    "V1": 139,
+    "V2": 124,
+    "SW": 132,
+    "C2 dimer": 18,
+    "V1+V1": 49,
+    "adatom": 192,
+    "V2+rotated bond": 23,
+    "none": 164,
+    "V6 hexagon": 30,
+    "V1+adatom": 43,
+    "V4": 42,
+    "V3": 48,
+    "Frenkel pair": 45,
+    "adatom pair": 48,
+    "decorated vacancy": 50,
+    "H pair": 25,
+    "SW+adatom": 33,
+    "SW+V1": 50,
+    "SW+SW": 29,
+    "V2+V1": 16
+  },
+  "curvature": {
+    "flat": 344,
+    "corrugation": 153,
+    "bump": 133,
+    "tube": 194,
+    "ripple 1D": 239,
+    "ripple 2D": 125,
+    "cage": 112
+  },
+  "strain_mode": {
+    "biaxial": 115,
+    "none": 266,
+    "shear": 66,
+    "axial": 135,
+    "uniaxial": 153,
+    "biaxial+compression": 77,
+    "none+compression": 84,
+    "shear+compression": 44,
+    "general": 121,
+    "general+compression": 68,
+    "isotropic+squash": 80,
+    "uniaxial+compression": 91
+  },
+  "generator": {
+    "mattersim-5m": 238,
+    "pet-omat-xs": 258,
+    "grace-1l-oam": 350,
+    "mace-mpa-0-medium": 324,
+    "dpa-3.1-3m-omat24": 130
+  },
+  "n_atoms_min_max": [
+    29,
+    100
+  ],
+  "elements": {
+    "C": 1300,
+    "O": 87,
+    "F": 40,
+    "H": 122,
+    "N": 52
+  }
+}

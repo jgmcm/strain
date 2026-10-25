@@ -1,0 +1,51 @@
+---
+title: "3 · Relaxation and MD"
+---
+
+`sample.py` processes each starting configuration with its assigned generator
+(step 1) and saves several frames from it. All calculations use float32, a fixed
+cell and periodic boundaries in all directions.
+
+## Relaxation
+
+ASE FIRE runs to a maximum force of 0.05 eV/Å or 200 steps. The saved frames are
+the starting structure, the structures at steps 3, 10, 30 and 80 when the
+optimiser reaches them, and the final structure. The early steps keep the
+strained, curved and freshly defected geometries before they relax, and the
+final structure gives the generator's local minimum.
+
+## MD
+
+Half of the configurations, chosen at random, continue from the relaxed
+structure into Langevin MD at fixed cell: 600 fs at a 1 fs time step (0.5 fs
+when H is present) with friction 0.02 fs⁻¹. The temperature is 300 K (25 %),
+600 K (20 %), 1000 K (20 %), 1500 K (20 %) or 2000 K (15 %), with velocities
+drawn from the Maxwell–Boltzmann distribution. A frame is saved every 20 fs
+after the first 100 fs, giving 26 frames per run. A run stops early if a force
+exceeds 50 eV/Å, a position or force becomes non-finite, or two atoms come
+within 0.7 Å.
+
+## Filtering
+
+`assemble.py` gathers all frames and removes a frame when:
+
+- two atoms are closer than 1.0 Å (0.8 Å for pairs with one H, 0.6 Å for H–H);
+- any atom has no neighbour within 2.3 Å, which catches desorbed or detached
+  atoms;
+- the generator's largest force exceeds 30 eV/Å.
+
+## Results
+
+The five generators processed all 1,300 configurations in about 2 h 15 min of
+wall time, from 01:39 to 03:24. Between 92 % and 98 % of relaxations reached
+0.05 eV/Å within 200 FIRE steps; the rest still contribute their saved steps. No
+MD run hit the stopping criteria. Filtering removed 53 of 23,784 frames, almost
+all because an adatom or a small fragment had detached.
+
+When PET finished, a second MatterSim worker started from the end of
+MatterSim's list. The first worker was already running an earlier version of
+`sample.py` without the check for configurations finished by another worker, so
+it recomputed 58 configurations. Both runs use the same random seeds, the later
+file replaced the earlier one, and the tables count each configuration once.
+
+{{< include _sampling_tables.md >}}

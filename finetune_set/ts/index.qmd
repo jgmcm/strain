@@ -1,0 +1,46 @@
+---
+title: "Fine-tune set: transition states"
+---
+
+A second, separate set of frames from the transition-state region of
+point-defect processes in graphene. These are vacancy hops and coalescence,
+Stone–Wales formation and other bond rotations near defects, adatom hops, and
+recombination of adatoms with vacancies, on strained and rippled sheets,
+nanotubes and C60. The [first set](../index.qmd) samples starting structures,
+relaxations, minima and MD up to 2000 K. Those trajectories are too short to
+cross barriers of 1 eV or more, so the first set contains no transition states.
+
+One model, MACE-OMAT-0 small, relaxes the end states and runs a climbing-image
+NEB for each process. The same 21-member committee then scores the climbing
+images, their neighbouring images and displaced copies by force and barrier
+disagreement. A diversity-weighted selection reduces them to 500–1,000 frames.
+
+{{< include steps/_ts_overview_status.md >}}
+
+## Steps
+
+1. [Processes and end states](steps/01_processes.qmd): the processes,
+   frameworks, strain and curvature, and how each pair of end states is built.
+2. [End states and NEB](steps/02_neb.qmd): the generator model, the batched
+   relaxation and NEB, the corrections found in testing (rigid drift,
+   runaway climbing images, states below both end states), and the
+   barriers.
+3. [Committee evaluation](steps/03_committee.qmd): the candidate frames, force
+   spread and barrier spread, and each member's barriers relative to the
+   committee.
+4. [Selection](steps/04_selection.qmd): score, diversity, limits per band, the
+   stopping rule and the output files.
+
+## Files
+
+| File | Contents |
+|---|---|
+| `ts/finetune_ts_selected.extxyz` | The selected transition-state frames (the deliverable) |
+| `ts/ts_endpoints.extxyz` | Relaxed end states of the bands with selected frames, for barrier checks |
+| `ts/candidate_scores.csv.gz` | Disagreement scores for every candidate frame |
+| `ts/barriers.csv.gz` | Each member's forward barrier on every converged band |
+| `ts/config.json` | Relaxation, NEB and candidate settings |
+| `ts/pairs_summary.json`, `ts/candidates_summary.json`, `ts/selection_summary.json` | Counts at each step |
+| `ts/work/` (ignored by git) | Pairs, end states, bands, candidates and committee predictions |
+
+The [README](README.md) lists the commands that reproduce each step.

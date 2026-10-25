@@ -1,0 +1,70 @@
+{
+  "n_pairs": 2000,
+  "seed": 20261025,
+  "framework": {
+    "sheet": 1482,
+    "fullerene": 168,
+    "nanotube": 350
+  },
+  "process_class": {
+    "vacancy migration": 520,
+    "bond rotation": 596,
+    "recombination": 242,
+    "adatom migration": 561,
+    "vacancy reconstruction": 81
+  },
+  "process": {
+    "sheet: V2 hop": 88,
+    "sheet: bond rotation at V2": 101,
+    "sheet: V1 hop": 192,
+    "sheet: adatom capture at vacancy": 87,
+    "fullerene: SW formation": 58,
+    "nanotube: Frenkel recombination": 46,
+    "sheet: adatom hop": 328,
+    "sheet: Frenkel recombination": 86,
+    "sheet: SW formation": 138,
+    "nanotube: V1 hop": 71,
+    "nanotube: adatom hop": 89,
+    "sheet: adatom hop near vacancy": 49,
+    "nanotube: SW formation": 74,
+    "sheet: V3/V4 hop": 53,
+    "nanotube: bond rotation at V2": 32,
+    "sheet: V1+V1 coalescence": 65,
+    "nanotube: V1 reconstruction switch": 18,
+    "sheet: bond rotation at V1": 53,
+    "sheet: bond rotation at V3/V4": 53,
+    "fullerene: V1 hop": 31,
+    "sheet: bond rotation at adatom": 59,
+    "sheet: C adatom hop near C adatom": 39,
+    "nanotube: V1+V1 coalescence": 20,
+    "fullerene: adatom hop": 56,
+    "sheet: V1 reconstruction switch": 63,
+    "sheet: bond rotation at SW": 28,
+    "fullerene: Frenkel recombination": 23
+  },
+  "curvature": {
+    "flat": 687,
+    "ripple 2D": 296,
+    "ripple 1D": 499,
+    "cage": 168,
+    "tube": 350
+  },
+  "strain_mode": {
+    "uniaxial": 179,
+    "none+compression": 191,
+    "none": 460,
+    "uniaxial+compression": 190,
+    "shear+compression": 98,
+    "axial": 240,
+    "general+compression": 147,
+    "biaxial+compression": 169,
+    "biaxial": 126,
+    "shear": 85,
+    "general": 115
+  },
+  "n_atoms_min_max": [
+    30,
+    99
+  ],
+  "n_atoms_mean": 66.9495
+}

@@ -1,0 +1,38 @@
+{
+  "n": 5,
+  "carbon_atoms": 48,
+  "converged": true,
+  "optimizer": "ASE BFGS",
+  "steps": 16,
+  "fmax_eV_per_angstrom": 0.0045801034295950924,
+  "force_tolerance_eV_per_angstrom": 0.005,
+  "ideal_defective_energy_eV": -427.8553678080407,
+  "perturbed_initial_energy_eV": -427.4007812942883,
+  "relaxed_energy_eV": -428.23113187483466,
+  "energy_change_from_ideal_eV": -0.3757640667939768,
+  "max_u_xy_angstrom": 0.03419463542270852,
+  "rms_u_xy_angstrom": 0.018646238224459735,
+  "max_u_3d_angstrom": 0.03458577480225296,
+  "z_range_angstrom": 0.00952303424772083,
+  "removed_rigid_translation_angstrom": [
+    -1.6884048909777844e-16,
+    1.9110870293677826e-16,
+    8.511800205640574e-16
+  ],
+  "cell_policy": "fixed; all atomic coordinates free in 3D",
+  "displacement_definition": "Minimum-image final minus ideal surviving-site positions, minus mean rigid translation; primary plotted magnitude sqrt(ux^2+uy^2).",
+  "fresh_evaluation": {
+    "fresh_fmax_eV_per_angstrom": 0.004580045317273426,
+    "energy_difference_from_saved_eV": -2.1941559680271894e-11,
+    "max_force_difference_from_saved_eV_per_angstrom": 5.037216489929552e-07,
+    "energy_tolerance_eV": 1e-06,
+    "passed": true
+  },
+  "model_key": "mace-matpes-pbe-0",
+  "model_label": "MACE-MATPES-PBE-0",
+  "head": null,
+  "model_sha256": "e618ad582b84239905b9c3b77ce6e9ce111b0ecd1533223a1a6aac7a696b8aa0",
+  "dtype": "float64",
+  "elapsed_seconds_this_invocation": 6.5491589499870315,
+  "completed_utc": "2026-10-25T00:45:19.300860+00:00"
+}

@@ -1,0 +1,38 @@
+{
+  "n": 4,
+  "carbon_atoms": 30,
+  "converged": true,
+  "optimizer": "ASE BFGS",
+  "steps": 22,
+  "fmax_eV_per_angstrom": 0.0037227675784379244,
+  "force_tolerance_eV_per_angstrom": 0.005,
+  "ideal_defective_energy_eV": -262.53277587890625,
+  "perturbed_initial_energy_eV": -262.4686279296875,
+  "relaxed_energy_eV": -263.10247802734375,
+  "energy_change_from_ideal_eV": -0.5697021484375,
+  "max_u_xy_angstrom": 0.07200060421108072,
+  "rms_u_xy_angstrom": 0.04155720585229518,
+  "max_u_3d_angstrom": 0.07200295264003255,
+  "z_range_angstrom": 0.0015103532102571648,
+  "removed_rigid_translation_angstrom": [
+    1.4901333838998688e-09,
+    6.203490528674157e-09,
+    1.7513285636520475e-10
+  ],
+  "cell_policy": "fixed; all atomic coordinates free in 3D",
+  "displacement_definition": "Minimum-image final minus ideal surviving-site positions, minus mean rigid translation; primary plotted magnitude sqrt(ux^2+uy^2).",
+  "fresh_evaluation": {
+    "fresh_fmax_eV_per_angstrom": 0.003722716122865677,
+    "energy_difference_from_saved_eV": 0.0,
+    "max_force_difference_from_saved_eV_per_angstrom": 1.4066696166992188e-05,
+    "energy_tolerance_eV": 0.0001,
+    "passed": true
+  },
+  "model_key": "mattersim-1m",
+  "model_label": "MatterSim v1.0.0-1M",
+  "head": null,
+  "model_sha256": "28b0b0b0f13efefee06b47ea4c9105a26bd3e2c8396da193430da96b3b49a8be",
+  "dtype": "float32",
+  "elapsed_seconds_this_invocation": 1.230010675964877,
+  "completed_utc": "2026-10-25T00:39:40.550753+00:00"
+}

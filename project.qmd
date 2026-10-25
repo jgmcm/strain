@@ -8,13 +8,16 @@ periodic honeycomb vacancy patterns are prepared, and local MACE-MPA-0
 relaxations of two-vacancy 4 × 4, 5 × 5, 20 × 20 and 21 × 21 cells are complete.
 A formation-energy scan from 2 × 2 through 10 × 10 is also complete, using a
 perfect graphene unit cell as the carbon reference. The first results are
-the in-plane displacement field and vacancy formation energies;
-quantitative strain analysis remains to be developed.
+the in-plane displacement field and vacancy formation energies. The 4 × 4 and
+5 × 5 relaxations have also been repeated with 19 foundation-model
+configurations, with per-atom and per-bond strain compared across models.
 
 | Work package | Page |
 |---|---|
 | Reference structure, method and strain calculations | [Calculations](calculations/calculations.qmd) |
 | First figure: structure and strain response | [Figure 1](fig1_strain/notes.qmd) |
+| Foundation-model comparison: 19 model configurations, 4 × 4 and 5 × 5 strain | [Model comparison](comp_models/notes.qmd) |
+| Fine-tune set: committee-selected graphene structures with strain, curvature and defects | [Fine-tune set](finetune_set/index.qmd) |
 
 All relaxations reached a maximum force below 0.005 eV/Å at fixed cell
 vectors. See the figure page for displacement maps and formation energies, and

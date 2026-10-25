@@ -1,0 +1,17 @@
+{
+  "python_executable": "/home/james/anaconda3/envs/mace/bin/python",
+  "python_version": "3.12.15 (main, Oct 13 2026, 16:52:04) [GCC 15.3.0]",
+  "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+  "packages": {
+    "mace-torch": "0.3.16",
+    "torch": "2.14.1+cu130",
+    "ase": "3.29.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "e3nn": "0.4.4",
+    "cuequivariance-torch": "0.13.0"
+  },
+  "device": "cpu",
+  "dtype": "float64",
+  "cpu_threads": 4
+}

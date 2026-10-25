@@ -1,0 +1,24 @@
+{
+  "device": "cpu",
+  "dtype": "float64",
+  "dtype_overrides": {
+    "mattersim": "float32"
+  },
+  "dtype_override_reason": "MatterSim 1.2.1 builds float32 graph tensors; its forward pass fails with float64 parameters.",
+  "cpu_threads": 4,
+  "lattice_constant_angstrom": 2.46,
+  "vacuum_per_side_angstrom": 15.0,
+  "cell_policy": "fixed",
+  "dispersion_correction": false,
+  "fmax_eV_per_angstrom": 0.005,
+  "max_steps": 1000,
+  "max_step_angstrom": 0.1,
+  "seed": 20261010,
+  "initial_perturbation_std_angstrom": 0.01,
+  "vacancy_indices_zero_based": {
+    "4": [0, 19],
+    "5": [0, 17]
+  },
+  "lattice_scan_bounds_angstrom": [2.38, 2.54],
+  "lattice_scan_tolerance_angstrom": 1e-6
+}

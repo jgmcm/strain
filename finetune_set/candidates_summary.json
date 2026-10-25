@@ -1,0 +1,31 @@
+{
+  "sampled_files": 1300,
+  "frames_sampled": 23784,
+  "frames_kept": 23731,
+  "removed": {
+    "initial: detached atom": 5,
+    "initial: generator force above 30 eV/A": 2,
+    "md: detached atom": 30,
+    "relax: detached atom": 15,
+    "relaxed: detached atom": 1
+  },
+  "kept_by_stage": {
+    "initial": 1293,
+    "relax": 4243,
+    "relaxed": 1299,
+    "md": 16896
+  },
+  "kept_by_generator": {
+    "dpa-3.1-3m-omat24": 2357,
+    "grace-1l-oam": 6059,
+    "mace-mpa-0-medium": 5844,
+    "mattersim-5m": 4666,
+    "pet-omat-xs": 4805
+  },
+  "kept_by_framework": {
+    "nanotube": 3646,
+    "sheet": 17969,
+    "fullerene": 2116
+  },
+  "atoms_total": 1826653
+}

@@ -1,0 +1,76 @@
+---
+title: "1 · Committee"
+---
+
+The committee has 21 members: every materials model from the
+[model comparison](../../comp_models/notes.qmd) plus three further models with
+about 3–4.5 million parameters from other architecture families. MACE-OFF23 is
+left out because it was trained on organic molecules and graphene is outside its
+domain.
+
+## Members
+
+{{< include _committee_members.md >}}
+
+"In PBE score" marks the 18 members whose training data are at the PBE or
+PBE+U level. The selection score uses only these members. The three r²SCAN
+members differ from the rest by functional as well as by model, so their spread
+would partly measure the difference between functionals; their results are kept
+and reported separately.
+
+The evaluation time covers the whole candidate pool. For the MACE members it is
+each model's own forward-pass time on the GPU, within shared batches; for
+MatterSim, PET and GRACE it is CPU wall time; for DPA it is GPU wall time
+including the throttle pauses. [Step 4](04_disagreement.qmd) has the details.
+
+## New members
+
+GRACE-1L-OAM (3,447,328 parameters) is a single-layer graph atomic cluster
+expansion model from ICAMS, pre-trained on OMat24 and fine-tuned on sAlex and
+MPtrj. It runs through `tensorpotential` 0.6.2.1 (TensorFlow) and is released
+under the Academic Software License.
+
+PET-OMat-XS v1.0.0 (4,487,962 parameters) is the extra-small point edge
+transformer from the UPET package, trained on OMat24. PET-OAM is only released
+in L and XL sizes, so the OMat24 model is the closest PBE-level option near
+5 million parameters. It runs through `upet` 0.3.1.
+
+DPA-3.1-3M (3,268,689 parameters) is the DeePMD-kit multi-task model trained on
+the OpenLAM datasets. Its `Omat24` head was frozen with
+`dp --pt freeze --model-branch Omat24` and runs through `deepmd-kit` 3.1.3.
+
+SevenNet was considered but has no model near this size: SevenNet-Nano has
+0.1 million parameters, SevenNet-l3i5 1.2 million, and the Omni and MF models
+about 25 million.
+
+## Environments
+
+Each package has its own conda environment, created from conda-forge:
+
+| Environment | Python | Model package | PyTorch or TensorFlow |
+|---|---|---|---|
+| `mace` | 3.12.15 | mace-torch 0.3.16 | PyTorch 2.14.1+cu130 |
+| `mattersim` | 3.13.17 | mattersim 1.2.1 | PyTorch 2.14.1+cu130 |
+| `upet` (new) | 3.12.15 | upet 0.3.1 | PyTorch 2.14.1+cu130 |
+| `deepmd` (new) | 3.12 | deepmd-kit 3.1.3 | PyTorch 2.10.0+cu128 |
+| `grace` (new) | 3.12 | tensorpotential 0.6.2.1 | TensorFlow, with GPU memory growth enabled |
+
+The new checkpoints are stored in `finetune_set/.models/` (ignored by git) and
+their SHA-256 checksums are in `committee.json`. The MACE and MatterSim members
+use the checkpoints in `comp_models/.models/`.
+
+## Generators
+
+One member from each class generated the configurations in steps 2 and 3:
+
+| Class | Generator | Device | Share of configurations | Time per 100-atom force call |
+|---|---|---|---:|---:|
+| MACE | MACE-MPA-0 medium | GPU | 25 % | 23 ms |
+| MatterSim | MatterSim v1.0.0-5M | GPU | 20 % | 28 ms |
+| GRACE | GRACE-1L-OAM | GPU | 25 % | 7 ms |
+| PET | PET-OMat-XS | CPU, 4 threads | 20 % | 36 ms |
+| DPA | DPA-3.1-3M Omat24 | GPU | 10 % | 62 ms |
+
+The shares follow speed, so that the generators finish at similar times. PET
+runs on the CPU and at most three generators share the GPU, to keep the GPU load
+moderate. The times are for a single 100-atom structure on an idle GPU.

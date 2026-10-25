@@ -1,0 +1,231 @@
+{
+  "checkpoints": {
+    "mace-matpes-pbe-0": {
+      "id": "mace-matpes-pbe-0",
+      "local_path": ".models/MACE-matpes-pbe-omat-ft.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_matpes_0/MACE-matpes-pbe-omat-ft.model",
+      "licence": "ASL",
+      "bytes": 79471284,
+      "sha256": "e618ad582b84239905b9c3b77ce6e9ce111b0ecd1533223a1a6aac7a696b8aa0",
+      "source": "copied from /home/james/.cache/mace/MACE-matpes-pbe-omat-ft.model",
+      "checks": {
+        "size_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:13.815053+00:00"
+    },
+    "mace-matpes-r2scan-0": {
+      "id": "mace-matpes-r2scan-0",
+      "local_path": ".models/MACE-matpes-r2scan-omat-ft.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_matpes_0/MACE-matpes-r2scan-omat-ft.model",
+      "licence": "ASL",
+      "bytes": 79470738,
+      "sha256": "8f147ecffa1d06a696e5648b13b81abda9c96fda9d0fb3faba3cd3fb27d9bba9",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:17.283165+00:00"
+    },
+    "mace-mh-0": {
+      "id": "mace-mh-0",
+      "local_path": ".models/mace-mh-0.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mh_1/mace-mh-0.model",
+      "licence": "ASL",
+      "bytes": 39921174,
+      "sha256": "d62ff8f293664e6556cfa49364b28ee72a70cf1e6150f3c111a578397fed609d",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true,
+        "sha256_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:19.279592+00:00"
+    },
+    "mace-mh-1": {
+      "id": "mace-mh-1",
+      "local_path": ".models/mace-mh-1.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mh_1/mace-mh-1.model",
+      "licence": "ASL",
+      "bytes": 59208139,
+      "sha256": "a522eb7f59c7879963d41586528f4980baf33e086c94aa92e3eafdeccad3be47",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true,
+        "sha256_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:21.920278+00:00"
+    },
+    "mace-mp-0-large": {
+      "id": "mace-mp-0-large",
+      "local_path": ".models/2024-01-07-mace-128-L2_epoch-199.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mp_0/2024-01-07-mace-128-L2_epoch-199.model",
+      "licence": "MIT",
+      "bytes": 63509066,
+      "sha256": "514bd2f1938653c37929f7c275a489378f03a7e3ffb27aa2ae0ddce8d0c859c8",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:36:47.679424+00:00"
+    },
+    "mace-mp-0-medium": {
+      "id": "mace-mp-0-medium",
+      "local_path": ".models/2023-12-03-mace-128-L1_epoch-199.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mp_0/2023-12-03-mace-128-L1_epoch-199.model",
+      "licence": "MIT",
+      "bytes": 44422970,
+      "sha256": "01bfe22100139f424713cf921144e5509cbe353d67aa9fa1be9c6e1e0ed35845",
+      "source": "copied from /home/james/.cache/mace/20231203mace128L1_epoch199model",
+      "checks": {
+        "size_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:36:44.512068+00:00"
+    },
+    "mace-mp-0-small": {
+      "id": "mace-mp-0-small",
+      "local_path": ".models/2023-12-10-mace-128-L0_energy_epoch-249.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mp_0/2023-12-10-mace-128-L0_energy_epoch-249.model",
+      "licence": "MIT",
+      "bytes": 32581838,
+      "sha256": "2ddb079cee0e131eaaf6912ba581b394551ead283e95c99cfe78c605d10b5736",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:36:44.460946+00:00"
+    },
+    "mace-mp-0b2-large": {
+      "id": "mace-mp-0b2-large",
+      "local_path": ".models/mace-large-density-agnesi-stress.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mp_0b2/mace-large-density-agnesi-stress.model",
+      "licence": "MIT",
+      "bytes": 98544548,
+      "sha256": "348390e758e1c90011c7675e864850f8e9c5b3e7c217f79a2b4bad1baaa657ad",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:01.295498+00:00"
+    },
+    "mace-mp-0b2-medium": {
+      "id": "mace-mp-0b2-medium",
+      "local_path": ".models/mace-medium-density-agnesi-stress.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mp_0b2/mace-medium-density-agnesi-stress.model",
+      "licence": "MIT",
+      "bytes": 79462798,
+      "sha256": "a90be07c8aa6623c390fcc4653d3e319c4a356f8b4a53d323f96b2012d375caf",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:36:56.568184+00:00"
+    },
+    "mace-mp-0b2-small": {
+      "id": "mace-mp-0b2-small",
+      "local_path": ".models/mace-small-density-agnesi-stress.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mp_0b2/mace-small-density-agnesi-stress.model",
+      "licence": "MIT",
+      "bytes": 67622684,
+      "sha256": "d5773bf9440e96d6eb8c598f84bd0e6369fcfa432f626a87f890e07da3c651c9",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:36:51.248416+00:00"
+    },
+    "mace-mp-0b3-medium": {
+      "id": "mace-mp-0b3-medium",
+      "local_path": ".models/mace-mp-0b3-medium.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mp_0b3/mace-mp-0b3-medium.model",
+      "licence": "MIT",
+      "bytes": 79472952,
+      "sha256": "2f2be696351ac9e94fbe01cdfb6f017679acdbd2db7645209ef55fec9826b012",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:06.252847+00:00"
+    },
+    "mace-mpa-0-medium": {
+      "id": "mace-mpa-0-medium",
+      "local_path": ".models/mace-mpa-0-medium.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_mpa_0/mace-mpa-0-medium.model",
+      "licence": "MIT",
+      "bytes": 79462305,
+      "sha256": "75428afe3a1d7d8062e19bcaabd5c433623cabf308242ec9fb493e38604fb638",
+      "source": "copied from /home/james/.cache/mace/mace-mpa-0-medium.model",
+      "checks": {
+        "size_matches_upstream": true,
+        "sha256_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:06.344093+00:00"
+    },
+    "mace-off23-medium": {
+      "id": "mace-off23-medium",
+      "local_path": ".models/MACE-OFF23_medium.model",
+      "official_url": "https://raw.githubusercontent.com/ACEsuit/mace-off/main/mace_off23/MACE-OFF23_medium.model",
+      "licence": "ASL",
+      "bytes": 18350596,
+      "sha256": "4842c52ad210d6e1f84d6cf1ffa70fae25a7e0d755ed55cf223f43913f587db7",
+      "source": "copied from /home/james/.cache/mace/MACE-OFF23_medium.model",
+      "checks": {
+        "size_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:21.942129+00:00"
+    },
+    "mace-omat-0-medium": {
+      "id": "mace-omat-0-medium",
+      "local_path": ".models/mace-omat-0-medium.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_omat_0/mace-omat-0-medium.model",
+      "licence": "ASL",
+      "bytes": 79463999,
+      "sha256": "d4b14be9afa294eebdbe31a0280b26a0fa29715771e978cbfd3ca24e0d90307a",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:13.723006+00:00"
+    },
+    "mace-omat-0-small": {
+      "id": "mace-omat-0-small",
+      "local_path": ".models/mace-omat-0-small.model",
+      "official_url": "https://github.com/ACEsuit/mace-foundations/releases/download/mace_omat_0/mace-omat-0-small.model",
+      "licence": "ASL",
+      "bytes": 67630500,
+      "sha256": "0abfde07862cf1e93b8b4d03cb702f29ce9c344ff2fc4de2ec0d7166d6c113a5",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true,
+        "sha256_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:10.208433+00:00"
+    },
+    "mattersim-1m": {
+      "id": "mattersim-1m",
+      "local_path": ".models/mattersim-v1.0.0-1M.pth",
+      "official_url": "https://raw.githubusercontent.com/microsoft/mattersim/main/pretrained_models/mattersim-v1.0.0-1M.pth",
+      "licence": "MIT",
+      "bytes": 17932943,
+      "sha256": "28b0b0b0f13efefee06b47ea4c9105a26bd3e2c8396da193430da96b3b49a8be",
+      "source": "copied from /home/james/.local/mattersim/pretrained_models/mattersim-v1.0.0-1M.pth",
+      "checks": {
+        "size_matches_upstream": true,
+        "git_blob_sha1_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:21.963487+00:00"
+    },
+    "mattersim-5m": {
+      "id": "mattersim-5m",
+      "local_path": ".models/mattersim-v1.0.0-5M.pth",
+      "official_url": "https://raw.githubusercontent.com/microsoft/mattersim/main/pretrained_models/mattersim-v1.0.0-5M.pth",
+      "licence": "MIT",
+      "bytes": 91176875,
+      "sha256": "e3df9fa708725e3d453140646c7d1838324b347a3d1214cf1440522146f872b5",
+      "source": "downloaded from url",
+      "checks": {
+        "size_matches_upstream": true,
+        "git_blob_sha1_matches_upstream": true
+      },
+      "recorded_utc": "2026-10-25T00:37:29.797572+00:00"
+    }
+  }
+}

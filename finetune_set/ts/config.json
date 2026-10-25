@@ -1,0 +1,50 @@
+{
+  "generator": "mace-omat-0-small",
+  "device": "cuda",
+  "dtype": "float32",
+  "relax": {
+    "optimizer": "FIRE",
+    "fmax_eV_per_angstrom": 0.05,
+    "max_steps": 500,
+    "accept_fmax_eV_per_angstrom": 0.1
+  },
+  "end_state_checks": {
+    "min_event_displacement_angstrom": 0.5,
+    "min_event_displacement_reconstruction_switch_angstrom": 0.15,
+    "far_field_radius_angstrom": 6.0,
+    "max_far_field_displacement_angstrom": 1.0
+  },
+  "neb": {
+    "method": "improvedtangent",
+    "spring_constant_min_eV_per_angstrom2": 0.1,
+    "spring_constant_max_eV_per_angstrom2": 1.0,
+    "interpolation": "idpp",
+    "optimizer": "FIRE",
+    "fire_dt": 0.1,
+    "fire_maxstep_angstrom": 0.1,
+    "climb_when_fmax_below": 0.5,
+    "give_up_without_climbing_after_steps": 300,
+    "fmax_eV_per_angstrom": 0.05,
+    "accept_fmax_eV_per_angstrom": 0.1,
+    "max_steps": 600,
+    "stop_if_image_below_end_states_eV": 0.3,
+    "check_image_below_end_states_after_steps": 50,
+    "rotation_buckling_angstrom": [
+      0.3,
+      0.7
+    ],
+    "interior_noise_angstrom": 0.01,
+    "min_barrier_eV": 0.05,
+    "max_climbing_rise_eV": 2.0,
+    "max_image_jump_angstrom": 1.5,
+    "max_generation": 2,
+    "max_images": 13
+  },
+  "ts_region": {
+    "displaced_copies": 1,
+    "displacement_sigma_angstrom": [
+      0.02,
+      0.05
+    ]
+  }
+}

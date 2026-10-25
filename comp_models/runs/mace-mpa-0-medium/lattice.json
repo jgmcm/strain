@@ -1,0 +1,19 @@
+{
+  "a_eq_angstrom": 2.451222023322001,
+  "energy_per_atom_at_a_eq_eV": -9.204498716906118,
+  "energy_per_atom_at_fixed_a_eV": -9.203812065050391,
+  "fixed_a_angstrom": 2.46,
+  "fixed_cell_biaxial_strain": 0.0035810614438356314,
+  "method": "Bounded scalar minimisation of the perfect two-atom primitive-cell energy per atom over a; ideal positions, same vacuum.",
+  "model_key": "mace-mpa-0-medium",
+  "model_sha256": "75428afe3a1d7d8062e19bcaabd5c433623cabf308242ec9fb493e38604fb638",
+  "head": "default",
+  "available_heads": [
+    "default"
+  ],
+  "parameters": 9063204,
+  "parameter_dtypes": [
+    "torch.float64"
+  ],
+  "dtype": "float64"
+}

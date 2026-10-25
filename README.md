@@ -43,3 +43,20 @@ two-carbon graphene unit cell as the carbon chemical-potential reference and
 reports both the total energy of two vacancies and the average per vacancy.
 Its README and combined CSV contain the results; the plotting script opens
 the formation-energy figure with `plt.show()`.
+
+The foundation-model comparison is in `comp_models/`. Seventeen checkpoints
+(MACE-MP-0, MP-0b2/0b3, MPA-0, OMAT-0, MATPES-0, MH-0/1, OFF23 and MatterSim)
+are stored in its ignored `.models/` directory, with provenance in
+`model_provenance.json`. The calculation repeats the 4 x 4 and 5 x 5 relaxation
+of calculation 02 with 19 model configurations and computes per-atom and
+per-bond strain. Its page `comp_models/notes.qmd` has a model browser for the
+Figure 1 Gouraud displacement maps, all models side by side, summary tables
+and strain maps; its README has the method and reproduction commands.
+
+The fine-tune set is in `finetune_set/`. Five foundation models generated
+23,731 candidate frames of strained, curved and defective graphene, nanotubes
+and C60 (at most 100 atoms each); a 21-member committee scored them, and 1,507
+frames with the largest disagreement, kept structurally diverse, are in
+`finetune_set/finetune_selected.extxyz`. The page `finetune_set/index.qmd` and
+its step sub-pages document each stage; `finetune_set/README.md` has the
+commands.
