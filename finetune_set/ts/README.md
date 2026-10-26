@@ -14,7 +14,7 @@ From the paper directory, with `E=~/anaconda3/envs`:
 $E/mace/bin/python finetune_set/ts/build_pairs.py
 # 2. end-state relaxation and NEB rounds, batched on the GPU
 $E/mace/bin/python finetune_set/ts/neb.py
-# 3. candidate frames from the transition-state region of each usable band
+# 3. candidate frames from the transition-state region of each usable pure-carbon band
 (cd finetune_set/ts && $E/mace/bin/python assemble.py)
 # 4. committee evaluation (MACE and DPA on the GPU; MatterSim, GRACE and PET on the CPU)
 finetune_set/ts/run_committee.sh

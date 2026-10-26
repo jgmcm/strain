@@ -55,8 +55,8 @@ and strain maps; its README has the method and reproduction commands.
 
 The fine-tune set is in `finetune_set/`. Five foundation models generated
 23,731 candidate frames of strained, curved and defective graphene, nanotubes
-and C60 (at most 100 atoms each); a 21-member committee scored them, and 1,507
-frames with the largest disagreement, kept structurally diverse, are in
-`finetune_set/finetune_selected.extxyz`. The page `finetune_set/index.qmd` and
+and C60 (at most 100 atoms each); a 21-member committee scored the 18,583
+pure-carbon frames among them, and 1,059 frames with the largest disagreement,
+kept structurally diverse, are in `finetune_set/finetune_selected.extxyz`. The page `finetune_set/index.qmd` and
 its step sub-pages document each stage; `finetune_set/README.md` has the
 commands.

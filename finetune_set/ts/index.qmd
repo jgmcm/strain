@@ -14,6 +14,8 @@ One model, MACE-OMAT-0 small, relaxes the end states and runs a climbing-image
 NEB for each process. The same 21-member committee then scores the climbing
 images, their neighbouring images and displaced copies by force and barrier
 disagreement. A diversity-weighted selection reduces them to 500–1,000 frames.
+Bands with H, N, O or F adatoms are skipped before the committee step, so the
+set is pure carbon.
 
 {{< include steps/_ts_overview_status.md >}}
 
@@ -28,8 +30,8 @@ disagreement. A diversity-weighted selection reduces them to 500–1,000 frames.
 3. [Committee evaluation](steps/03_committee.qmd): the candidate frames, force
    spread and barrier spread, and each member's barriers relative to the
    committee.
-4. [Selection](steps/04_selection.qmd): score, diversity, limits per band, the
-   stopping rule and the output files.
+4. [Selection](steps/04_selection.qmd): score, the choice of bands through
+   their climbing images, the stopping rule and the output files.
 
 ## Files
 

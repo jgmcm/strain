@@ -39,6 +39,11 @@ cell allows. The sheet menu is:
 - combinations: SW + V1, SW + adatom, V1 + adatom, and V2 with a rotated bond
   next to it, which relaxes towards 555-777-type reconstructions.
 
+The H, N, O and F adatoms, the H pairs and the decorated vacancies were not
+meant to be part of the set. Their frames go through relaxation, MD and the
+committee evaluation, but the selection (step 5) drops them, so the final set
+is pure carbon.
+
 Clusters of three or more vacancies only go into cells with at least 64 atoms
 and at least 9.5 Å in both directions. Nanotubes take V1, V2, SW, adatoms,
 V1 + adatom and SW + V1, with Stone–Wales rotations about the local surface

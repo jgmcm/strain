@@ -3,7 +3,10 @@ title: "5 · Selection"
 ---
 
 `select_frames.py` reduces the candidate pool to the frames where the committee
-disagrees most, while keeping the set structurally diverse.
+disagrees most, while keeping the set structurally diverse. It first drops every
+frame containing an element other than carbon (option `--elements`, default
+`C`). The starting configurations included H, N, O and F adatoms, which are not
+part of the intended set.
 
 ## Score
 
@@ -71,5 +74,5 @@ carries its metadata in the comment line:
 
 The file contains no `energy` or `forces` entries. The committee values are for
 selection only; the frames need reference labels, for example from PBE single
-points, before fine-tuning. The scores of every candidate frame are in
+points, before fine-tuning. The scores of every pure-carbon candidate frame are in
 `candidate_scores.csv.gz`.

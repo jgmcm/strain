@@ -1,0 +1,29 @@
+{
+  "bands": 2750,
+  "bands_by_status": {
+    "converged": 1431,
+    "no barrier": 404,
+    "climbing image ran away": 503,
+    "image below end states": 346,
+    "no climbing stage": 29,
+    "not converged": 36,
+    "converged (loose)": 1
+  },
+  "usable_bands_with_other_elements": {
+    "adatom hop": 282,
+    "adatom hop near vacancy": 27,
+    "adatom capture at vacancy": 38,
+    "bond rotation at adatom": 29
+  },
+  "usable_bands": 1056,
+  "frames": 6313,
+  "frames_by_stage": {
+    "initial": 1056,
+    "final": 1056,
+    "ts": 1056,
+    "ts_neighbour": 2089,
+    "ts_displaced": 1056
+  },
+  "removed": {},
+  "atoms_total": 420022
+}

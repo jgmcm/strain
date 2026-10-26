@@ -42,18 +42,28 @@ $$
 \sigma_{F} = \max_i \sigma_{F,i}.
 $$
 
-The energy measure is a barrier spread. Each member's energy for a frame is
-taken relative to the mean of its own energies for the band's two end states,
-and the spread over members is
+The energy measure is a barrier spread, one value per band. Each member's
+energy for the climbing image is taken relative to the mean of its own energies
+for the band's two end states, and the spread over members is
 
 $$
-\sigma_B = \operatorname{std}_m \Big[ E_m - \tfrac{1}{2}\big(E_m^\text{initial} + E_m^\text{final}\big) \Big]
+\sigma_B = \operatorname{std}_m \Big[ E_m^\text{TS} - \tfrac{1}{2}\big(E_m^\text{initial} + E_m^\text{final}\big) \Big]
 $$
 
-in eV. The end states contain the same atoms as the frame, so this difference
-needs no elemental reference energies, unlike the per-atom energy spread of the
-first set. For a climbing image, $\sigma_B$ is the spread of the members' mean
-of forward and backward barriers along the generator's path. Each member's
+in eV. The end states contain the same atoms as the climbing image, so this
+difference needs no elemental reference energies, unlike the per-atom energy
+spread of the first set. $\sigma_B$ is the spread of the members' mean of
+forward and backward barriers along the generator's path. Every frame of a band
+carries the band's $\sigma_B$.
+
+The same spread can be computed for each neighbouring or displaced image, and
+`candidate_scores.csv.gz` stores it as `relative_energy_std`. It is not used in
+the score. For the displaced copies, its median is 0.81 eV against 0.39 eV for
+the climbing images. The random displacement raises every member's energy by a
+few eV, and the softer members raise it less, so this spread mostly measures
+the members' stiffness against the displacement. A first version of the
+selection used each frame's own spread, and 429 of its 500 frames were displaced
+copies. Each member's
 forward barrier on that path, $E_m^\text{TS} - E_m^\text{initial}$, is stored
 in `barriers.csv.gz`. These barriers are measured on MACE-OMAT-0 small's
 geometries. They are not each member's own barrier, which would need an NEB

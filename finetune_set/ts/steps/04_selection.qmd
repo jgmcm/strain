@@ -8,32 +8,37 @@ reuses the greedy search of the first set ([step 5](../../steps/05_selection.qmd
 
 ## Score
 
-Each transition-state frame's score adds its force spread and barrier spread
-from TS 3, each divided by its median over all transition-state frames:
+Each frame's score adds its force spread and its band's barrier spread from
+TS 3, each divided by its median over the climbing images:
 
 $$
 s = \frac{\sigma_F}{\operatorname{median}(\sigma_F)} + \frac{\sigma_B}{\operatorname{median}(\sigma_B)}.
 $$
 
-Frames in the top 50 % by score form the selection pool.
+## Bands, then frames
 
-## Diversity and limits per band
+The selection chooses bands through their climbing images. The climbing images
+in the top 50 % by score form the pool. The descriptor is the same as in the
+first set. It joins each frame's mean MACE-MPA-0 invariant atomic descriptor
+with the descriptor of its most uncertain atom, standardised over the
+transition-state frames. Starting from the highest-scoring climbing image, each
+step adds the climbing image that maximises $d_\text{min} \times s / s_\text{max}$,
+where $d_\text{min}$ is the distance to the nearest climbing image already
+chosen.
 
-The descriptor is the same as in the first set. It joins each frame's mean
-MACE-MPA-0 invariant atomic descriptor with the descriptor of its most
-uncertain atom, standardised over the transition-state frames. Starting from the
-highest-scoring frame, each step adds the frame that maximises
-$d_\text{min} \times s / s_\text{max}$, where $d_\text{min}$ is the distance to
-the nearest frame already chosen. Each band contributes at most two frames: its
-climbing image and one neighbouring or displaced image.
+Each chosen band then adds one more frame: whichever of its neighbouring images
+and displaced copy has the largest force spread. Every band in the set
+therefore has its climbing image, which is the frame that fixes the barrier,
+and one frame near it.
 
 ## Number of frames
 
-The selection stops where the running median (over 50 picks) of $d_\text{min}$
+The search stops where the running median (over 50 picks) of $d_\text{min}$
 falls to the median distance between a climbing image and its neighbouring
-images on the same band. Beyond that point, new picks resemble each other about
-as closely as adjacent images of one band do. The count is kept between 500 and
-1,000 frames.
+images on the same band. Beyond that point, a new climbing image resembles one
+already chosen about as closely as two adjacent images of one band do. The
+number of bands is kept between 250 and 500, so that the set has 500–1,000
+frames.
 
 {{< include _ts_selection_text.md >}}
 
@@ -58,9 +63,13 @@ metadata in the comment line:
   (`ts`, `ts_neighbour` or `ts_displaced`) and `image`;
 - generator: `generator_energy`, `barrier_forward`, `barrier_backward`,
   `neb_status` and `neb_fmax` from MACE-OMAT-0 small;
-- disagreement: `committee_force_std_max`, `committee_force_std_mean`,
-  `committee_barrier_std`, `committee_barrier_mean`, the same spreads including
-  the r²SCAN members, `selection_score` and `selection_order`;
+- disagreement: `committee_force_std_max` and `committee_force_std_mean` for
+  the frame; `committee_barrier_std` and `committee_barrier_mean`, the spread
+  and mean of the PBE-level members' barriers for the band (at its climbing
+  image); `committee_relative_energy_std`, the frame's own energy spread
+  relative to the end states; the same spreads including the r²SCAN members;
+  `selection_score`; and `selection_order`, the band's position in the greedy
+  search, shared by both frames of a band;
 - per-atom arrays: `committee_force_std`, and `committee_mean_forces`, the mean
   of the 18 PBE-level members.
 

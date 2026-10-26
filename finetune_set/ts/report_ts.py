@@ -44,7 +44,7 @@ def records(path):
 
 def pair_info():
     frames = read(WORK / "pairs.extxyz", "::2")
-    return {f.info["pair_id"]: f.info for f in frames}
+    return {f.info["pair_id"]: {**f.info, "carbon_only": set(f.get_chemical_symbols()) == {"C"}} for f in frames}
 
 
 def pairs_step():
@@ -132,7 +132,8 @@ def neb_step():
         ["Round", "Outcome", "Bands"], [[g + 1, s, n] for (g, s), n in sorted(rounds.items())], ["---:", "---", "---:"])
     (STEPS / "_neb_tables.md").write_text(text)
 
-    usable = [r for r in nebs if r["status"] in USABLE]
+    # The figures show the pure-carbon bands, the ones that go on to the committee.
+    usable = [r for r in nebs if r["status"] in USABLE and info[base_id(r["pair_id"])]["carbon_only"]]
     if not usable:
         return
     # Generator barriers by process.
@@ -154,7 +155,8 @@ def neb_step():
     style(ax)
     handles = [plt.Line2D([], [], marker="o", linestyle="", color=SLOTS[n]) for n in range(len(CLASS_ORDER))]
     ax.legend(handles, CLASS_ORDER, frameon=False, fontsize=8, loc="lower right")
-    ax.set_title("Generator barriers by process, all frameworks · black bar: median", loc="left", fontsize=12)
+    ax.set_title("Generator barriers by process, pure-carbon bands, all frameworks · black bar: median", loc="left",
+                 fontsize=12)
     fig.savefig(FIGURES / "generator_barriers.png", dpi=110)
     plt.close(fig)
 
@@ -230,13 +232,15 @@ def committee_step():
     order = sorted(groups, key=lambda k: (CLASS_ORDER.index(k[0]), k[1]))
     rng = np.random.default_rng(0)
     for ax, key, label in ((axes[0], "force_std_max", "Largest per-atom force spread, $\\max_i \\sigma_{F,i}$ (eV/Å)"),
-                           (axes[1], "barrier_std", "Barrier spread, $\\sigma_B$ (eV)")):
+                           (axes[1], "barrier_std", "Barrier spread of the band, $\\sigma_B$ (eV)")):
+        # The barrier spread is one value per band, shown at the climbing image.
+        stages = ("ts",) if key == "barrier_std" else ("ts", "ts_neighbour", "ts_displaced")
         for y, g in enumerate(order):
-            for stage, colour in (("ts", SLOTS[1]), ("ts_neighbour", SLOTS[0]), ("ts_displaced", SLOTS[2])):
-                v = np.array([float(r[key]) for r in groups[g] if r["stage"] == stage])
+            for stage, colour in zip(("ts", "ts_neighbour", "ts_displaced"), (SLOTS[1], SLOTS[0], SLOTS[2])):
+                v = np.array([float(r[key]) for r in groups[g] if r["stage"] == stage and stage in stages])
                 if len(v):
                     ax.scatter(v, y + rng.uniform(-0.28, 0.28, len(v)), s=4, color=colour, alpha=0.35, linewidths=0)
-            v = np.array([float(r[key]) for r in groups[g]])
+            v = np.array([float(r[key]) for r in groups[g] if r["stage"] in stages])
             ax.plot([np.median(v)] * 2, [y - 0.38, y + 0.38], color=INK, linewidth=1.5)
         log_axis(ax)
         ax.set_xlabel(label)
@@ -288,19 +292,21 @@ def selection_step():
     d = curve["picked_distance"][1:]
     fig, ax = plt.subplots(figsize=(10, 4.5), constrained_layout=True)
     picks = np.arange(2, len(d) + 2)
-    ax.plot(picks, d, color=SLOTS[0], linewidth=0.6, alpha=0.6, label="distance of each pick to the frames already chosen")
+    ax.plot(picks, d, color=SLOTS[0], linewidth=0.6, alpha=0.6,
+            label="distance of each climbing image to those already chosen")
     window = 50
     smoothed = np.array([np.median(d[max(0, k - window + 1):k + 1]) for k in range(len(d))])
     ax.plot(picks, smoothed, color=INK, linewidth=2, label="running median over 50 picks")
     ax.axhline(float(curve["redundant_distance"]), color=SLOTS[1], linewidth=1.5,
                label="median distance between a climbing image and its neighbouring images")
     ax.axvline(int(curve["n_final"]), color=INK_2, linewidth=1)
-    ax.text(int(curve["n_final"]), ax.get_ylim()[1] * 0.95, f"  selected: {int(curve['n_final'])}", va="top", fontsize=9)
-    ax.set_xlabel("Pick number")
+    ax.text(int(curve["n_final"]), ax.get_ylim()[1] * 0.95, f"  selected: {int(curve['n_final'])} bands", va="top",
+            fontsize=9)
+    ax.set_xlabel("Pick number (climbing images)")
     ax.set_ylabel("Descriptor distance")
     ax.set_yscale("log")
     style(ax, "y")
-    ax.legend(frameon=False, fontsize=8)
+    ax.legend(frameon=False, fontsize=8, loc="lower left")
     ax.set_title("Greedy selection: how much new structure each pick adds", loc="left", fontsize=12)
     fig.savefig(FIGURES / "ts_selection_curve.png", dpi=110)
     plt.close(fig)
@@ -325,7 +331,7 @@ def selection_step():
     plt.close(fig)
 
     selected = read(ROOT / "finetune_ts_selected.extxyz", ":")
-    top = sorted(selected, key=lambda a: -a.info["selection_score"])[:12]
+    top = sorted([a for a in selected if a.info["stage"] == "ts"], key=lambda a: -a.info["selection_score"])[:12]
     vmax = max(float(a.arrays["committee_force_std"].max()) for a in top)
     columns, rows_n = 6, 2
     fig, axes = plt.subplots(2 * rows_n, columns, figsize=(2.6 * columns, 4.4 * rows_n),
@@ -339,7 +345,7 @@ def selection_step():
                        f"{i['frame_id']} · {i['framework_detail']}\n{i['process']}\n"
                        f"σF max {i['committee_force_std_max']:.2f} eV/Å · σB {i['committee_barrier_std']:.2f} eV",
                        values=a.arrays["committee_force_std"], cmap="Oranges", vmax=vmax)
-    fig.suptitle(f"Highest-scoring selected frames · atom colour: per-atom force spread (white 0 to dark orange {vmax:.1f} eV/Å)",
+    fig.suptitle(f"Highest-scoring selected climbing images · atom colour: per-atom force spread (white 0 to dark orange {vmax:.1f} eV/Å)",
                  x=0.01, ha="left", fontsize=12)
     fig.tight_layout()
     fig.savefig(FIGURES / "ts_top_selected.png", dpi=110)
@@ -349,14 +355,15 @@ def selection_step():
     text = table(["Quantity", "Value"], [
         ["Bands with both end states and a transition-state region", f"{s['bands']:,}"],
         ["Transition-state frames (climbing, neighbouring and displaced images)", f"{s['transition_state_frames']:,}"],
-        ["Frames in the scored pool (top 50 % by score)", f"{s['pool_size']:,}"],
-        ["Selected frames", f"{s['selected']:,}"],
-        ["Natural stopping point of the greedy search", f"{s['natural_stopping_point']:,}"],
-        ["Bands contributing selected frames", f"{s['selected_bands']:,}"],
+        ["Climbing images in the scored pool (top 50 % by score)", f"{s['pool_size']:,}"],
+        ["Natural stopping point of the greedy search (bands)", f"{s['natural_stopping_point']:,}"],
+        ["Selected bands", f"{s['selected_bands']:,}"],
+        ["Selected frames (climbing image and one other image per band)", f"{s['selected']:,}"],
         ["Atoms in the selected frames", f"{s['selected_atoms']:,}"],
-        ["Median $\\max_i \\sigma_{F,i}$, all / selected (eV/Å)",
-         f"{s['median_force_std_max']:.3f} / {s['selected_median_force_std_max']:.3f}"],
-        ["Median $\\sigma_B$, all / selected (eV)", f"{s['median_barrier_std']:.3f} / {s['selected_median_barrier_std']:.3f}"],
+        ["Median $\\max_i \\sigma_{F,i}$ of climbing images, all / selected bands (eV/Å)",
+         f"{s['median_force_std_max_climbing']:.3f} / {s['selected_median_force_std_max_climbing']:.3f}"],
+        ["Median $\\sigma_B$, all / selected bands (eV)",
+         f"{s['median_barrier_std']:.3f} / {s['selected_median_barrier_std']:.3f}"],
     ], ["---", "---:"])
     for key, title in (("selected_by_process", "Process"), ("selected_by_stage", "Frame"),
                        ("selected_by_framework", "Framework"), ("selected_by_curvature", "Curvature")):
@@ -368,8 +375,10 @@ def selection_step():
     candidates = json.loads((ROOT / "candidates_summary.json").read_text())
     status = table(["Quantity", "Value"], [
         ["Pairs of end states built", f"{pairs['n_pairs']:,}"],
-        ["Bands run (end states usable)", f"{candidates['bands']:,}"],
-        ["Bands with a converged climbing image and a barrier", f"{candidates['usable_bands']:,}"],
+        ["Bands run, including reruns and split bands", f"{candidates['bands']:,}"],
+        ["Pure-carbon bands with a converged climbing image and a barrier", f"{candidates['usable_bands']:,}"],
+        ["Such bands with H, N, O or F atoms (dropped)",
+         f"{sum(candidates.get('usable_bands_with_other_elements', {}).values()):,}"],
         ["Transition-state frames scored by the committee", f"{s['transition_state_frames']:,}"],
         ["Selected frames", f"**{s['selected']:,}** ({s['selected_atoms']:,} atoms)"],
         ["Output file", "`finetune_set/ts/finetune_ts_selected.extxyz`"],

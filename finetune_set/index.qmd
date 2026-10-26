@@ -7,7 +7,7 @@ rippling and curvature, and point defects: Stone–Wales defects, vacancies,
 divacancies and larger vacancy clusters, and interstitial and adsorbed atoms.
 The structures were generated with five foundation models, scored by a
 21-member committee, and reduced to the frames where the committee disagrees
-most, keeping the set structurally diverse.
+most, keeping the set structurally diverse. The set is pure carbon.
 
 {{< include steps/_overview_status.md >}}
 

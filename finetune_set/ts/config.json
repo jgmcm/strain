@@ -45,6 +45,9 @@
     "displacement_sigma_angstrom": [
       0.02,
       0.05
+    ],
+    "elements": [
+      "C"
     ]
   }
 }

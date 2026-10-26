@@ -42,7 +42,8 @@ $$
 
 Members do not share an energy zero, so each member's energies are first
 corrected by its own elemental reference energies, $\mu_{m,Z}$, fitted by least
-squares over the whole pool. The energy spread is then
+squares over the scored frames. Since these are pure carbon, this reduces to
+one reference energy per member, $\mu_{m,\mathrm{C}}$. The energy spread is then
 
 $$
 \sigma_E = \operatorname{std}_m \frac{E_m - \sum_Z n_Z \mu_{m,Z}}{N}

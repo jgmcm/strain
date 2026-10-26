@@ -18,7 +18,8 @@ by score, over the top `--pool-fraction` of frames by score, with at most
 (the starting structure or a relaxation step), one relaxed minimum and two MD
 frames. Each frame's
 descriptor joins its mean MACE-MPA-0 atomic descriptor with the descriptor of
-its most uncertain atom. The final count is where the distance from each new
+its most uncertain atom. Frames with elements outside `--elements` (default:
+carbon only) are dropped before scoring. The final count is where the distance from each new
 pick to the frames already chosen falls to the typical distance between
 consecutive saved MD frames (20 fs apart), using a running median over 50
 picks, bounded to the requested range.
@@ -117,6 +118,7 @@ def main():
     parser.add_argument("--work", type=Path, default=WORK, help="Directory with candidates.extxyz and committee/.")
     parser.add_argument("--exclude", nargs="*", default=[], help="Members to leave out (preview runs).")
     parser.add_argument("--report", type=Path, default=ROOT, help="Directory for the selected frames and summaries.")
+    parser.add_argument("--elements", nargs="+", default=["C"], help="Keep only frames made of these elements.")
     args = parser.parse_args()
     work, report = args.work, args.report
 
@@ -124,11 +126,19 @@ def main():
     members = [m for m in committee["members"] if m["key"] not in args.exclude]
     frames = read(work / "candidates.extxyz", ":")
     natoms = np.array([len(f) for f in frames])
+    energies, forces = load_predictions(members, natoms, work)
+    descriptors = np.load(work / "committee" / "mace-mpa-0-medium.npz")["descriptors"].astype(np.float64)
+
+    keep = np.array([set(f.get_chemical_symbols()) <= set(args.elements) for f in frames])
+    atom_keep = np.repeat(keep, natoms)
+    pool_index = np.flatnonzero(keep)  # position of each kept frame in candidates.extxyz
+    excluded = Counter(f.info["defect_class"] for f, k in zip(frames, keep) if not k)
+    frames, natoms = [frames[k] for k in pool_index], natoms[keep]
+    energies, forces, descriptors = energies[:, keep], forces[:, atom_keep], descriptors[atom_keep]
     offsets = np.concatenate([[0], np.cumsum(natoms)])
     composition = np.array([[f.get_chemical_symbols().count(e) for e in ELEMENTS] for f in frames], float)
     composition = composition[:, composition.sum(axis=0) > 0]
 
-    energies, forces = load_predictions(members, natoms, work)
     pbe = np.array([m["pbe_level"] for m in members])
     sigma_atom, mean_forces, sigma_max, sigma_mean = force_spread(forces[pbe], offsets)
     _, _, sigma_max_all, _ = force_spread(forces, offsets)
@@ -138,7 +148,6 @@ def main():
     sigma_energy_all = per_atom_residuals.std(axis=0)
     score = sigma_max / np.median(sigma_max) + sigma_energy / np.median(sigma_energy)
 
-    descriptors = np.load(work / "committee" / "mace-mpa-0-medium.npz")["descriptors"].astype(np.float64)
     mean_descriptor = reduce_frames(descriptors, offsets, lambda d: d.mean(axis=0))
     worst_atom = offsets[:-1] + np.array([np.argmax(sigma_atom[a:b]) for a, b in zip(offsets[:-1], offsets[1:])])
     X = np.hstack([mean_descriptor, descriptors[worst_atom]])
@@ -195,14 +204,15 @@ def main():
         is_selected[selected] = True
         for k, f in enumerate(frames):
             i = f.info
-            writer.writerow([k, i["frame_id"], i["config_id"], i["framework"], i["defect_class"], i["curvature"],
+            writer.writerow([pool_index[k], i["frame_id"], i["config_id"], i["framework"], i["defect_class"], i["curvature"],
                              i["stage"], i["generator"], i.get("md_temperature_K", ""), len(f),
                              f"{sigma_max[k]:.5f}", f"{sigma_mean[k]:.5f}", f"{sigma_energy[k]:.6f}",
                              f"{sigma_max_all[k]:.5f}", f"{score[k]:.4f}", int(in_pool[k]), int(is_selected[k])])
     np.savez_compressed(report / "selection_curve.npz", picked_distance=picked_distance, redundant_distance=redundant_distance,
                         pool_scores=score[pool][chosen], n_final=n_final, natural=natural)
     summary = {
-        "candidates": len(frames), "pool_threshold_score": float(threshold), "pool_size": int(len(pool)),
+        "candidates": len(keep), "elements": args.elements, "excluded_frames": int((~keep).sum()),
+        "excluded_by_defect_class": excluded, "scored": len(frames), "pool_threshold_score": float(threshold), "pool_size": int(len(pool)),
         "selected": n_final, "natural_stopping_point": natural, "redundant_distance": redundant_distance,
         "members_pbe": [m["key"] for m in members if m["pbe_level"]],
         "members_r2scan": [m["key"] for m in members if not m["pbe_level"]],

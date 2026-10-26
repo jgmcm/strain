@@ -29,6 +29,13 @@ vacancies:
 | Frenkel recombination | monovacancy and a C adatom on a bridge site 1.5–4.5 Å away | the adatom in the vacant site | 7 |
 | Adatom capture at vacancy | monovacancy and an H, O, N or F adatom 1.5–4.5 Å away | the adatom at the vacancy: N or O above its centre, H or F bonded to an under-coordinated atom | 7 |
 
+The adatom processes also place H, N, O and F adatoms (468 of the 2,000 pairs,
+23 %), which were not meant to be part of the set. Those pairs went through the
+NEB run, which had started before this was noticed. The candidate step
+(`assemble.py`, setting `ts_region.elements` in `config.json`) skips every band
+with an atom other than carbon, so the committee, the selection and the output
+files are pure carbon.
+
 Bond rotations at a divacancy include the 5-8-5 to 555-777 transformation when
 the rotated bond is the right one. A bond rotation within 3.5 Å of a
 Stone–Wales defect can rotate the Stone–Wales bond back, which is Stone–Wales

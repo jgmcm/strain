@@ -5,18 +5,21 @@ Disagreement is measured over the PBE-level members, as for the first set:
 
 - force spread: per atom, sigma_i = sqrt(mean_m |F_mi - mean_m F_mi|^2); per frame, its
   maximum and mean over atoms;
-- barrier spread: for each member, the frame's energy relative to the mean of the
-  band's two end-state energies, E_m - (E_m(initial) + E_m(final)) / 2; per frame, the
-  standard deviation over members (eV). The end states have the same atoms, so no
-  elemental reference energies are needed.
+- barrier spread: for each member, the climbing image's energy relative to the mean
+  of the band's two end-state energies, E_m - (E_m(initial) + E_m(final)) / 2; per
+  band, the standard deviation over members (eV). The end states have the same atoms,
+  so no elemental reference energies are needed. Every frame of a band carries the
+  band's barrier spread. A displaced copy's own energy spread is not used, because it
+  mostly measures how stiff each member is against the random displacement.
 
-The score adds the two spreads, each divided by its median over the
-transition-state frames. Selection is the diversity-weighted greedy search of
-the first set (select_frames.py) over the top `--pool-fraction` of frames by
-score, with at most one climbing image and one other frame (a neighbouring or
-displaced image) from each band. The final count is where the running median
-of the pick distance falls to the median distance between a climbing image and
-its neighbouring images, bounded to the requested range.
+The score adds the two spreads, each divided by its median over the climbing
+images. Bands are chosen through their climbing images, with the
+diversity-weighted greedy search of the first set (select_frames.py) over the
+top `--pool-fraction` of climbing images by score. The number of bands is where
+the running median of the pick distance falls to the median distance between a
+climbing image and its neighbouring images, bounded so that the frame count
+stays in the requested range. Each chosen band contributes its climbing image
+and the neighbouring or displaced image with the largest force spread.
 """
 
 import argparse
@@ -36,8 +39,7 @@ from select_frames import force_spread, greedy_selection, leave_one_out_rms, loa
 
 WORK = ROOT / "work"
 TS_STAGES = ("ts", "ts_neighbour", "ts_displaced")
-STAGE_GROUP = {"ts": "ts", "ts_neighbour": "near", "ts_displaced": "near"}
-STAGE_LIMITS = {"ts": 1, "near": 1}  # per band
+NEAR_STAGES = ("ts_neighbour", "ts_displaced")
 
 
 def main():
@@ -74,11 +76,18 @@ def main():
         e = ends[band[k]]
         relative[:, k] = energies[:, k] - (energies[:, e["initial"]] + energies[:, e["final"]]) / 2
         barrier[:, k] = energies[:, k] - energies[:, e["initial"]]
-    sigma_barrier = np.where(region, np.nanstd(np.where(region, relative, 0.0)[pbe], axis=0), np.nan)
-    sigma_barrier_all = np.where(region, np.nanstd(np.where(region, relative, 0.0), axis=0), np.nan)
+    energy_std = np.where(region, np.nanstd(np.where(region, relative, 0.0)[pbe], axis=0), np.nan)
+    energy_std_all = np.where(region, np.nanstd(np.where(region, relative, 0.0), axis=0), np.nan)
+    # The barrier spread is the energy spread of the band's climbing image.
+    top_of = {band[k]: k for k in np.flatnonzero(region & (stage == "ts"))}
+    region &= np.array([b in top_of for b in band])
+    top_index = np.array([top_of.get(b, 0) for b in band])
+    sigma_barrier = np.where(region, energy_std[top_index], np.nan)
+    sigma_barrier_all = np.where(region, energy_std_all[top_index], np.nan)
+    climbing = np.flatnonzero(region & (stage == "ts"))
     score = np.full(len(frames), np.nan)
-    score[region] = (sigma_max[region] / np.median(sigma_max[region])
-                     + sigma_barrier[region] / np.median(sigma_barrier[region]))
+    score[region] = (sigma_max[region] / np.median(sigma_max[climbing])
+                     + sigma_barrier[region] / np.median(sigma_barrier[climbing]))
 
     descriptors = np.load(work / "committee" / "mace-mpa-0-medium.npz")["descriptors"].astype(np.float64)
     mean_descriptor = reduce_frames(descriptors, offsets, lambda d: d.mean(axis=0))
@@ -95,29 +104,37 @@ def main():
     redundant_distance = float(np.median(neighbour_distance))
 
     candidates = np.flatnonzero(region)
-    threshold = np.quantile(score[candidates], 1 - args.pool_fraction)
-    pool = candidates[score[candidates] >= threshold]
-    stage_groups = np.array([STAGE_GROUP[stage[k]] for k in pool])
+    threshold = np.quantile(score[climbing], 1 - args.pool_fraction)
+    pool = climbing[score[climbing] >= threshold]
     weight = score[pool] / score[pool].max()
-    chosen, picked_distance = greedy_selection(X[pool], weight, band[pool], stage_groups, args.max_frames,
-                                               sum(STAGE_LIMITS.values()), limits=STAGE_LIMITS)
+    chosen, picked_distance = greedy_selection(X[pool], weight, band[pool], np.full(len(pool), "ts"), len(pool), 1,
+                                               limits={"ts": 1})
     window = 50
     smoothed = np.array([np.median(picked_distance[max(1, k - window + 1):k + 1]) for k in range(1, len(picked_distance))])
     below = np.flatnonzero(smoothed < redundant_distance)
     natural = int(below[0]) + 1 if len(below) else len(chosen)
-    n_final = int(np.clip(natural, args.min_frames, min(args.max_frames, len(chosen))))
-    selected = pool[chosen[:n_final]]
+    n_bands = int(np.clip(natural, -(-args.min_frames // 2), min(args.max_frames // 2, len(chosen))))
+    # Each chosen band adds the neighbouring or displaced image with the largest force spread.
+    selected, band_order = [], []
+    near = np.isin(stage, NEAR_STAGES) & region
+    for n, k in enumerate(pool[chosen[:n_bands]]):
+        options = np.flatnonzero(near & (band == band[k]))
+        for j in [k] + ([options[np.argmax(sigma_max[options])]] if len(options) else []):
+            selected.append(j)
+            band_order.append(n)
+    selected = np.array(selected)
 
     rank = np.full(len(frames), -1)
     rank[candidates[np.argsort(-score[candidates])]] = np.arange(len(candidates))
     out = []
-    for order, k in enumerate(selected):
+    for k, order in zip(selected, band_order):
         atoms = frames[k].copy()
         a, b = offsets[k], offsets[k + 1]
         atoms.info.update(
             committee_force_std_max=float(sigma_max[k]), committee_force_std_mean=float(sigma_mean[k]),
             committee_barrier_std=float(sigma_barrier[k]),
-            committee_barrier_mean=float(np.mean(barrier[pbe, k])),
+            committee_barrier_mean=float(np.mean(barrier[pbe, top_index[k]])),
+            committee_relative_energy_std=float(energy_std[k]),
             committee_force_std_max_with_r2scan=float(sigma_max_all[k]),
             committee_barrier_std_with_r2scan=float(sigma_barrier_all[k]),
             selection_score=float(score[k]), score_rank=int(rank[k]), selection_order=order,
@@ -136,7 +153,8 @@ def main():
         writer = csv.writer(handle)
         writer.writerow(["frame_index", "frame_id", "pair_id", "process", "process_class", "framework", "curvature",
                          "stage", "n_atoms", "generator_barrier_forward", "force_std_max", "force_std_mean",
-                         "barrier_std", "committee_barrier_mean", "force_std_max_with_r2scan", "score", "in_pool", "selected"])
+                         "barrier_std", "relative_energy_std", "committee_barrier_mean", "force_std_max_with_r2scan",
+                         "score", "in_pool", "selected"])
         in_pool, is_selected = np.zeros(len(frames), bool), np.zeros(len(frames), bool)
         in_pool[pool] = True
         is_selected[selected] = True
@@ -146,7 +164,8 @@ def main():
             writer.writerow([k, i["frame_id"], i["pair_id"], i["process"], i["process_class"], i["framework"],
                              i["curvature"], i["stage"], len(f), f"{i['barrier_forward']:.4f}",
                              f"{sigma_max[k]:.5f}", f"{sigma_mean[k]:.5f}",
-                             f"{sigma_barrier[k]:.5f}" if ts else "", f"{np.mean(barrier[pbe, k]):.4f}" if ts else "",
+                             f"{sigma_barrier[k]:.5f}" if ts else "", f"{energy_std[k]:.5f}" if ts else "",
+                             f"{np.mean(barrier[pbe, top_index[k]]):.4f}" if ts else "",
                              f"{sigma_max_all[k]:.5f}", f"{score[k]:.4f}" if ts else "", int(in_pool[k]), int(is_selected[k])])
     # Each member's forward barrier on the generator's path, one row per band.
     with gzip.open(report / "barriers.csv.gz", "wt", newline="") as handle:
@@ -158,19 +177,21 @@ def main():
             writer.writerow([i["pair_id"], i["process"], i["process_class"], i["framework"], i["curvature"],
                              f"{i['barrier_forward']:.4f}"] + [f"{v:.4f}" for v in barrier[:, k]])
     np.savez_compressed(report / "selection_curve.npz", picked_distance=picked_distance,
-                        redundant_distance=redundant_distance, pool_scores=score[pool][chosen], n_final=n_final, natural=natural)
+                        redundant_distance=redundant_distance, pool_scores=score[pool][chosen], n_final=n_bands, natural=natural)
     ts_frames = region & (stage == "ts")
     deviation = barrier[:, ts_frames] - np.median(barrier[pbe][:, ts_frames], axis=0)
     summary = {
         "candidates": int(len(frames)), "transition_state_frames": int(region.sum()), "bands": len(complete),
         "pool_threshold_score": float(threshold), "pool_size": int(len(pool)),
-        "selected": n_final, "natural_stopping_point": natural, "redundant_distance": redundant_distance,
+        "selected": int(len(selected)), "natural_stopping_point": natural, "redundant_distance": redundant_distance,
         "members_pbe": [m["key"] for m in members if m["pbe_level"]],
         "members_r2scan": [m["key"] for m in members if not m["pbe_level"]],
         "median_force_std_max": float(np.median(sigma_max[region])),
-        "median_barrier_std": float(np.median(sigma_barrier[region])),
+        "median_force_std_max_climbing": float(np.median(sigma_max[climbing])),
+        "median_barrier_std": float(np.median(sigma_barrier[climbing])),
         "selected_median_force_std_max": float(np.median(sigma_max[selected])),
-        "selected_median_barrier_std": float(np.median(sigma_barrier[selected])),
+        "selected_median_force_std_max_climbing": float(np.median(sigma_max[pool[chosen[:n_bands]]])),
+        "selected_median_barrier_std": float(np.median(sigma_barrier[pool[chosen[:n_bands]]])),
         "leave_one_out_rms_force_eV_per_A": leave_one_out_rms(forces[:, np.repeat(region, natoms)], members),
         "member_barrier_deviation_median_eV": {m["key"]: float(np.median(deviation[n])) for n, m in enumerate(members)},
         "member_barrier_deviation_mad_eV": {m["key"]: float(np.median(np.abs(deviation[n]))) for n, m in enumerate(members)},

@@ -324,6 +324,8 @@ def selection_step():
     s = json.loads((ROOT / "selection_summary.json").read_text())
     text = table(["Quantity", "Value"], [
         ["Candidate frames", f"{s['candidates']:,}"],
+        ["Candidate frames with H, N, O or F atoms (dropped)", f"{s['excluded_frames']:,}"],
+        ["Pure-carbon frames scored", f"{s['scored']:,}"],
         ["Frames in the scored pool (top 40 % by score)", f"{s['pool_size']:,}"],
         ["Selected frames", f"{s['selected']:,}"],
         ["Natural stopping point of the greedy search", f"{s['natural_stopping_point']:,}"],
@@ -341,6 +343,7 @@ def selection_step():
         ["Starting configurations", "1,300"],
         ["Frames sampled by the five generators", f"{candidates['frames_sampled']:,}"],
         ["Candidate frames after filtering", f"{s['candidates']:,}"],
+        ["Pure-carbon candidate frames scored", f"{s['scored']:,}"],
         ["Committee members (PBE-level members used for the score)", f"{len(s['members_pbe']) + len(s['members_r2scan'])} ({len(s['members_pbe'])})"],
         ["Selected frames", f"**{s['selected']:,}** ({s['selected_atoms']:,} atoms)"],
         ["Output file", "`finetune_set/finetune_selected.extxyz`"],

@@ -13,7 +13,10 @@ band the pool takes:
 - the two end states (`initial`, `final`), which the committee evaluates so that
   each member's barrier can be computed. They are not candidates for selection.
 
-Frames with close contacts or detached atoms are dropped.
+Bands with atoms of elements outside `ts_region.elements` (carbon only) are
+skipped: the pair builder also made H, N, O and F adatom pairs, which are not
+part of the intended set. Frames with close contacts or detached atoms are
+dropped.
 """
 
 import argparse
@@ -43,6 +46,7 @@ def main():
     # Pair metadata comes from pairs.extxyz, the record of how each pair was built.
     pairs = {f.info["pair_id"]: f.info for f in read(args.work / "pairs.extxyz", "::2")}
     kept, removed = [], Counter()
+    other_elements = Counter()
 
     def add(frame, stage, image):
         frame = frame.copy()
@@ -58,6 +62,9 @@ def main():
         record = records[pair_id]
         e = record["energies"]
         if record["status"] not in USABLE or e[record["climbing_image"]] - max(e[0], e[-1]) < min_barrier:
+            continue
+        if not set(images[0].get_chemical_symbols()) <= set(config["elements"]):
+            other_elements[pairs[base_id(pair_id)]["process"]] += 1
             continue
         images = sorted(images, key=lambda f: f.info["image"])
         top = record["climbing_image"]
@@ -77,6 +84,7 @@ def main():
     write(args.work / "candidates.extxyz", kept, format="extxyz")
     summary = {
         "bands": len(bands), "bands_by_status": Counter(r["status"] for r in records.values()),
+"usable_bands_with_other_elements": dict(other_elements),
         "usable_bands": len({f.info["pair_id"] for f in kept}),
         "frames": len(kept), "frames_by_stage": Counter(f.info["stage"] for f in kept),
         "removed": dict(removed), "atoms_total": int(sum(len(f) for f in kept)),

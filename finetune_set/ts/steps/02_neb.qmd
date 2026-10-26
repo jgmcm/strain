@@ -11,7 +11,8 @@ All bands come from MACE-OMAT-0 small (8.2 million parameters, trained on
 OMat24). It is the fastest MACE member on this machine, about 22,000 atoms per
 second for energies and forces in batches. Among the committee members it sits
 closer to the committee consensus than MACE-MPA-0 (leave-one-out RMS force
-difference 0.360 against 0.397 eV/Å on the first set). OMat24 includes rattled
+difference 0.364 against 0.399 eV/Å on the pure-carbon frames of the first
+set). OMat24 includes rattled
 and high-temperature structures, which are closer to transition states than the
 near-equilibrium structures of MPtrj. The paths and barriers are therefore those
 of one model. The committee in step 3 measures how much the other models
@@ -87,6 +88,35 @@ A converged band without a barrier, where the climbing image is less than
 but it gives no transition state.
 
 ## Results
+
+The run took 5 h 22 min: 28 min for the 4,000 end-state relaxations and the
+rest for three NEB rounds of 1,750, 792 and 208 bands. The GPU was busy for
+2 h 41 min of that time, at about 22,200 atoms per second, and the job used at
+most 3.5 GB of memory. Of the 2,000 pairs, 1,750 kept usable end states, and
+1,381 gave at least one converged band with a barrier. Counting follow-up
+bands, 1,432 bands converged with a barrier. 376 of these contain an H, N, O or
+F adatom and are dropped in the next step, which leaves 1,056 pure-carbon bands.
+The tables below count every band that ran; the figures show the pure-carbon
+bands only.
+
+Process names describe how each pair was built. In some bands the end-state
+relaxation changed the defect, so the band connects two minima through a saddle
+point but does not follow the named process. For example, p00028 starts from a
+Frenkel pair whose adatom had already bonded into the lattice during the
+relaxation, and its final state lies 1.5 eV above the initial one. Recombination
+should release energy, and 4 of the 37 pure-carbon Frenkel recombination bands
+on sheets end higher than they start. The reaction energies of the other
+processes match expectations. SW formation on sheets costs a median 4.5 eV, and
+85 % of V1 hops on sheets end within 0.3 eV of their start, as the symmetry of
+the process requires.
+
+MACE-OMAT-0 small gives a median barrier of 0.87 eV for the 59 carbon adatom
+hops on flat sheets. On the same geometries, the median over the 18 PBE-level
+members is 0.33 eV, and only MACE-MP-0 medium (0.95 eV) gives a value as high
+as the generator. Published DFT values are about 0.4–0.5 eV. The generator is
+therefore an outlier for this process, and the adatom hop paths are its paths.
+DFT forces on these climbing images will show how far they are from DFT saddle
+points.
 
 {{< include _neb_tables.md >}}
 
